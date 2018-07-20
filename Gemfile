@@ -13,12 +13,18 @@ gem 'puma', '~> 3.11'
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
+
+#################### ADDED GEMS ##############################
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Use Serializer to customize data stream
 gem 'active_model_serializers'
 # Use jwt tokens for auth
 gem 'jwt'
+# Use figaro for ENV variable for jwt token secret
+gem 'figaro'
+##############################################################
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

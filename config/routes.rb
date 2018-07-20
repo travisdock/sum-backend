@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # Auth Routes
       post '/login', to: 'auth#create'
       get '/current_user', to: 'auth#show'
 
@@ -20,13 +21,14 @@ Rails.application.routes.draw do
 end
 
 # TEST FETCH
-# data = {"username": "Travis", "password": "1234"}
-# options = {
+# const data = {"username": "Travis", "password": "1234"};
+# const options = {
 #   method: "POST",
 #   headers: {
 #     "Content-Type": "application/json",
 #     "Accept": "application/json"
 #   },
 #   body: JSON.stringify(data)
-# }
+# };
 # fetch('http://localhost:3000/api/v1/login', options)
+# .then(resp => resp.json())

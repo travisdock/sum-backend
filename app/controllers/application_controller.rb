@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   #add auth to every route
 
   def issue_token(payload)
-    JWT.encode(payload, 'learnlovecode', 'HS256')
+    JWT.encode(payload, ENV["jwt_token_secret"], 'HS256')
   end
 
   def current
