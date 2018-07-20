@@ -15,8 +15,10 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-#Use Serializer to customize data stream
+# Use Serializer to customize data stream
 gem 'active_model_serializers'
+# Use knock for handling jwt tokens
+gem 'knock'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
