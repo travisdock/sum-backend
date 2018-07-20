@@ -17,8 +17,8 @@ gem 'puma', '~> 3.11'
 gem 'bcrypt', '~> 3.1.7'
 # Use Serializer to customize data stream
 gem 'active_model_serializers'
-# Use knock for handling jwt tokens
-gem 'knock'
+# Use jwt tokens for auth
+gem 'jwt'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
