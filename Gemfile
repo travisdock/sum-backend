@@ -24,6 +24,8 @@ gem 'active_model_serializers'
 gem 'jwt'
 # Use figaro for ENV variable for jwt token secret
 gem 'figaro'
+# Use awesome_print for rails console formatting
+gem 'awesome_print'
 ##############################################################
 
 # Use ActiveStorage variant

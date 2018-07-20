@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :authorized
+  # before_action :authorized
   #add auth to every route
 
   def issue_token(payload)
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
   end
 
   def authorized
-    render json: {message: "Not welcome"}, status: 401 unless logged_in
+    render json: {message: "No valid token"}, status: 401 unless logged_in
   end
 
   def logged_in

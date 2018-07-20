@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/current_user', to: 'auth#show'
 
+      # Data Routes
+      get '/totals_data/:user_id', to: 'users#totals'
+
       resources :users, except: [:new, :edit, :index, :show]
 
       #I used custom routes because you would only ever want to retrieve the categories or entries specific to the current user:
@@ -20,8 +23,23 @@ Rails.application.routes.draw do
 
 end
 
-# TEST FETCH
+# TEST LOGIN FETCH
 # const data = {"username": "Travis", "password": "1234"};
+# const options = {
+#   method: "POST",
+#   headers: {
+#     "Content-Type": "application/json",
+#     "Accept": "application/json"
+#   },
+#   body: JSON.stringify(data)
+# };
+# fetch('http://localhost:3000/api/v1/login', options)
+# .then(resp => resp.json())
+# .then(resp => localStorage.current_user = resp)
+
+# TEST DATA FETCH
+
+# const data = {};
 # const options = {
 #   method: "POST",
 #   headers: {

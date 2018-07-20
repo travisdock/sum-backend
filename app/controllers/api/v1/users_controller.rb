@@ -15,4 +15,9 @@ class Api::V1::UsersController < ApplicationController
     #   render json: { msg: "Password Updated!" }
     # end
   end
+
+  def totals
+    @user = User.find(params[:user_id])
+    render json: @user.get_totals
+  end
 end
