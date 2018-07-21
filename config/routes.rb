@@ -7,7 +7,8 @@ Rails.application.routes.draw do
       get '/current_user', to: 'auth#show'
 
       # Data Routes
-      get '/totals_data/:user_id', to: 'users#totals'
+      get '/month_category/:user_id', to: 'users#month_category'
+      get '/totals_averages/:user_id', to: 'users#totals_averages'
 
       resources :users, except: [:new, :edit, :index, :show]
 

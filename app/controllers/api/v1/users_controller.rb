@@ -16,8 +16,15 @@ class Api::V1::UsersController < ApplicationController
     # end
   end
 
-  def totals
+  def month_category
     @user = User.find(params[:user_id])
-    render json: @user.get_totals
+    render json: @user.formatted_month_category
   end
+
+  def totals_averages
+    @user = User.find(params[:user_id])
+    render json: @user.formatted_totals_averages
+  end
+
+
 end
