@@ -11,12 +11,12 @@ class ApplicationController < ActionController::API
   end
 
   def user_id
-    decoded_token[0]['user_id']
+    decoded_token[0]['id']
   end
 
   def decoded_token
     begin
-      JWT.decode(request.headers['Authorization'], 'learnlovecode', true, {algorithm: 'HS256'})
+      JWT.decode(request.headers['Authorization'], ENV["jwt_token_secret"], true, {algorithm: 'HS256'})
     rescue JWT::DecodeError
       [{}]
     end

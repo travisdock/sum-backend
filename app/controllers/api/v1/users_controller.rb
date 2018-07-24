@@ -1,8 +1,9 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :set_user, except: [:create]
 
   def create
     @user = User.create(user_params)
-    if @user
+    if @user.valid?
       render json: @user
     else
       render json: { errors: @user.errors.full_messages }
@@ -17,13 +18,20 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def month_category
-    @user = User.find(params[:user_id])
     render json: @user.formatted_month_category
   end
 
   def totals_averages
-    @user = User.find(params[:user_id])
     render json: @user.formatted_totals_averages
+  end
+
+  private
+  def user_params
+    params.permit(:username, :password, :email)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
 

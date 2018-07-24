@@ -1,5 +1,5 @@
 class Api::V1::AuthController < ApplicationController
-  skip_before_action :authorized, only: [:create, :show]
+  # skip_before_action :authorized, only: [:create, :show]
 
   def create
     user = User.find_by(username: params[:username])
@@ -13,7 +13,7 @@ class Api::V1::AuthController < ApplicationController
 
   def show
     if logged_in
-      render json: {username: current.username, id: current.id}, status: 200
+      render json: {id: current.id, categories: current.categories}, status: 200
     else
       render json: {error: 'Token Invalid'}, status: 401
     end

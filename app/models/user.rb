@@ -2,6 +2,10 @@ class User < ApplicationRecord
   has_many :user_categories
   has_many :categories, :through => :user_categories
   has_many :entries
+  validates :username, :presence => true
+  validates :username, :uniqueness => true
+  validates :password, :presence => true
+  validates :email, :presence => true
   has_secure_password
 
 

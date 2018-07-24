@@ -26,6 +26,8 @@ gem 'jwt'
 gem 'figaro'
 # Use awesome_print for rails console formatting
 gem 'awesome_print'
+# Use rakc-cors for development testing
+gem 'rack-cors'
 ##############################################################
 
 # Use ActiveStorage variant
