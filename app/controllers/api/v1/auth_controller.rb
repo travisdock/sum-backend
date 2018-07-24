@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       token = issue_token({id: user.id})
-      render json: {username: user.username, id: user.id, jwt: token}, status: 200
+      render json: {username: user.username, id: user.id, jwt: token, categories: user.categories}, status: 200
     else
       render json: {error: 'Username or Password Invalid'}, status: 401
     end
@@ -13,7 +13,7 @@ class Api::V1::AuthController < ApplicationController
 
   def show
     if logged_in
-      render json: {id: current.id, categories: current.categories}, status: 200
+      render json: {username: current.username, id: current.id, categories: current.categories}, status: 200
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
