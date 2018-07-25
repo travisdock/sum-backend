@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
       #custom route for getting the entries of a specific user
       get '/entries/:user_id', to: 'entries#index', as: 'user_entries'
+      post '/entries', to: 'entries#create'
 
       #custom route for getting the categories of a specific users
       get 'categories/:user_id', to: 'categories#index', as: 'user_categories'
