@@ -15,8 +15,10 @@ class User < ApplicationRecord
 
 
   def formatted_month_category
-    # Get entries for user for this year
-    entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
+    # Get only expense categories
+    categories = self.categories.where(income: false)
+    # Get entries for user for this year in expense categories
+    entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: categories)
     # Group entries by month
     entries_by_month = entries.group_by{ |entry| entry.date.beginning_of_month }
     # Group month's entries by category
@@ -26,6 +28,8 @@ class User < ApplicationRecord
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
 
+    pie_data = entries_by_month.map {|e| {e.first.strftime("%B") => e[1].map {|k,v| [k,v]} } }
+
     column1 = (entries_by_month.map { |e| e[0] }).unshift("x")
     columns = self.categories.map do |category|
       entries_by_month.map do |date, totals|
@@ -33,7 +37,7 @@ class User < ApplicationRecord
       end.map{|e| e ? e : 0 }.unshift(category.name)
     end.unshift(column1)
 
-    return columns
+    return pie_data
 
   end
 
