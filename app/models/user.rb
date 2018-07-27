@@ -18,7 +18,7 @@ class User < ApplicationRecord
     # Get entries for user for this year
     entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
     # Group entries by month
-    entries_by_month = entries.group_by{ |entry| entry.date.strftime("%B") }
+    entries_by_month = entries.group_by{ |entry| entry.date.beginning_of_month }
     # Group month's entries by category
     entries_by_month.transform_values! { |entries| entries.group_by{|e| e.category.name } }
     # Change individual entries into sums by category and month
@@ -26,7 +26,14 @@ class User < ApplicationRecord
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
 
-    return entries_by_month
+    column1 = (entries_by_month.map { |e| e[0] }).unshift("x")
+    columns = self.categories.map do |category|
+      entries_by_month.map do |date, totals|
+        totals[category.name]
+      end.map{|e| e ? e : 0 }.unshift(category.name)
+    end.unshift(column1)
+
+    return columns
 
   end
 
