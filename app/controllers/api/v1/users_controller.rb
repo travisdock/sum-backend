@@ -17,12 +17,12 @@ class Api::V1::UsersController < ApplicationController
     # end
   end
 
-  def month_category
-    render json: @user.formatted_month_category
+  def pie_charts
+    render json: @user.pie_charts
   end
 
-  def totals_averages
-    render json: @user.formatted_totals_averages
+  def profit_loss
+    render json: @user.profit_loss
   end
 
   private

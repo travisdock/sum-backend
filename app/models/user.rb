@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # end
 
 
-  def formatted_month_category
+  def pie_charts
     # Get only expense categories
     categories = self.categories.where(income: false)
     # Get entries for user for this year in expense categories
@@ -27,17 +27,39 @@ class User < ApplicationRecord
     entries_by_month.each do |month, categories|
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
+    # Get entries for year by category
+    entries_for_year = entries.group_by{|e| e.category.name }
+    # Sum entries for year by category
+    entries_for_year.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
+    # Create object for pie_data
+    entries_for_year = entries_for_year.map { |k, v| [k, v] }
+    entries_for_year = {entries.first.date.strftime("%Y") => entries_for_year}
 
     pie_data = entries_by_month.map {|e| {e.first.strftime("%B") => e[1].map {|k,v| [k,v]} } }
 
-    column1 = (entries_by_month.map { |e| e[0] }).unshift("x")
-    columns = self.categories.map do |category|
-      entries_by_month.map do |date, totals|
-        totals[category.name]
-      end.map{|e| e ? e : 0 }.unshift(category.name)
-    end.unshift(column1)
+    pie_data.push(entries_for_year)
 
     return pie_data
+
+  end
+
+  def profit_loss
+    # Get entries for the year
+    entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
+    # Sort entries by month
+    month_group = entries.group_by{ |entry| entry.date.beginning_of_month }
+    # Sort months by profit or loss and total them
+    month_group.transform_values! { |entries| entries.group_by{|e| e.category.income }.transform_values! { |entries| entries.map(&:amount).inject(0, &:+)} }
+    # Find profit or loss
+    month_group.transform_values! { |pl| (pl[true] || 0) - (pl[false] || 0) }
+    # Convert to array and sort by month
+    p_l_by_month_sorted = Array(month_group).sort_by! { |e| e[0] }
+    # Create base format for chart
+    p_l_formatted = [["x"], ["Profit/Loss"]]
+    # Map and push to base format
+    p_l_by_month_sorted.map { |arr| p_l_formatted[0].push(arr[0]); p_l_formatted[1].push(arr[1]) }
+
+    return p_l_formatted
 
   end
 
@@ -67,6 +89,15 @@ class User < ApplicationRecord
   end
 
 end
+
+  ############BAR CHART INFO###############
+# column1 = (entries_by_month.map { |e| e[0] }).unshift("x")
+# columns = self.categories.map do |category|
+#   entries_by_month.map do |date, totals|
+#     totals[category.name]
+#   end.map{|e| e ? e : 0 }.unshift(category.name)
+# end.unshift(column1)
+###########################################
 
 # entries_by_category = entries.group_by{ |entry| }
 
