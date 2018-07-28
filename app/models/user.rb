@@ -14,7 +14,8 @@ class User < ApplicationRecord
   # end
 
 
-  def pie_charts
+  def charts
+    ##################### PIE CHART #############################
     # Get only expense categories
     categories = self.categories.where(income: false)
     # Get entries for user for this year in expense categories
@@ -39,7 +40,34 @@ class User < ApplicationRecord
 
     pie_data.push(entries_for_year)
 
-    return pie_data
+    # pie_data
+    ########################################################
+
+    ################ PROFIT LOSS CHART #####################
+    # Get entries for the year
+    p_l_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
+    # Sort entries by month
+    month_group = p_l_entries.group_by{ |entry| entry.date.beginning_of_month }
+    # Sort months by profit or loss and total them
+    month_group.transform_values! { |entries| entries.group_by{|e| e.category.income }.transform_values! { |entries| entries.map(&:amount).inject(0, &:+)} }
+    # Find profit or loss
+    month_group.transform_values! { |pl| (pl[true] || 0) - (pl[false] || 0) }
+    # Convert to array and sort by month
+    p_l_by_month_sorted = Array(month_group).sort_by! { |e| e[0] }
+    # Create base format for chart
+    p_l_formatted = [["x"], ["Profit/Loss"]]
+    # Map and push to base format
+    p_l_by_month_sorted.map { |arr| p_l_formatted[0].push(arr[0]); p_l_formatted[1].push(arr[1]) }
+
+    # p_l_formatted
+    #############################################################
+
+    charts = {
+      p_l: p_l_formatted,
+      pie_data: pie_data
+    }
+
+    return charts
 
   end
 

@@ -17,8 +17,8 @@ class Api::V1::UsersController < ApplicationController
     # end
   end
 
-  def pie_charts
-    render json: @user.pie_charts
+  def charts
+    render json: @user.charts
   end
 
   def profit_loss
