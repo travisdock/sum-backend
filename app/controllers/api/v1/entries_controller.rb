@@ -33,6 +33,11 @@ class Api::V1::EntriesController < ApplicationController
         render json: { errors: @new_category.errors.full_messages }
       end
     end
+  end
+
+  def delete
+    @entry = Entry.find_by(user_id: params["user_id"], date: params["date"], amount: params["amount"], notes: params["notes"])
+    render json: @entry.destroy
 
   end
 
