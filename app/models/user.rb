@@ -8,12 +8,6 @@ class User < ApplicationRecord
   validates :email, :presence => true
   has_secure_password
 
-
-  # def category_totals(date)
-  #   self.categories.map { |category| category =>  }
-  # end
-
-
   def charts
     ##################### PIE CHART #############################
     # Get only expense categories
@@ -28,6 +22,7 @@ class User < ApplicationRecord
     entries_by_month.each do |month, categories|
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
+
     # Get entries for year by category
     entries_for_year = entries.group_by{|e| e.category.name }
     # Sum entries for year by category
@@ -35,11 +30,12 @@ class User < ApplicationRecord
     # Create object for pie_data
     entries_for_year = entries_for_year.map { |k, v| [k, v] }
     entries_for_year = {entries.first.date.strftime("%Y") => entries_for_year}
-
+    # Add formatted month entries to pie data object
     pie_data = entries_by_month.map {|e| {e.first.strftime("%B") => e[1].map {|k,v| [k,v]} } }
-
+    # Order data by month
+    pie_data.sort_by! {|e| Date::MONTHNAMES.index(e.keys[0]) }
+    # Add year data
     pie_data.push(entries_for_year)
-
     # pie_data
     ########################################################
 
@@ -58,7 +54,6 @@ class User < ApplicationRecord
     p_l_formatted = [["x"], ["Profit/Loss"]]
     # Map and push to base format
     p_l_by_month_sorted.map { |arr| p_l_formatted[0].push(arr[0]); p_l_formatted[1].push(arr[1]) }
-
     # p_l_formatted
     #############################################################
 
@@ -91,6 +86,14 @@ class User < ApplicationRecord
 
   end
 
+  def table
+    entries = self.entries
+
+    entries = entries.map { |e| {category: e.category.name, date: e.date, amount: e.amount, notes: e.notes}  }
+
+    return entries
+  end
+
   def formatted_totals_averages
     # Get start date for user to calculate averages
     start_date = self.entries.order(:date).first.date.month
@@ -117,6 +120,11 @@ class User < ApplicationRecord
   end
 
 end
+
+# def category_totals(date)
+#   self.categories.map { |category| category =>  }
+# end
+
 
   ############BAR CHART INFO###############
 # column1 = (entries_by_month.map { |e| e[0] }).unshift("x")

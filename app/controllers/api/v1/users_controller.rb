@@ -22,7 +22,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def profit_loss
-    render json: @user.profit_loss
+    render json: @user.table
   end
 
   private
