@@ -86,13 +86,13 @@ class User < ApplicationRecord
 
   end
 
-  def table
-    entries = self.entries
-
-    entries = entries.map { |e| {category: e.category.name, date: e.date, amount: e.amount, notes: e.notes}  }
-
-    return entries
-  end
+  # def table_entries
+  #   entries = self.entries.reverse
+  # 
+  #   entries = entries.map { |e| {category: e.category.name, date: e.date, amount: e.amount, notes: e.notes}  }
+  #
+  #   return entries
+  # end
 
   def formatted_totals_averages
     # Get start date for user to calculate averages

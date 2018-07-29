@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
       # Data Routes
       get '/charts/:user_id', to: 'users#charts'
-      get '/profit_loss/:user_id', to: 'users#profit_loss'
+      get '/entries/:user_id', to: 'users#entries'
 
       resources :users, except: [:new, :edit, :index, :show]
 

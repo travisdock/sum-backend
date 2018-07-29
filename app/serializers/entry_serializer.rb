@@ -1,3 +1,7 @@
 class EntrySerializer < ActiveModel::Serializer
-  attributes :id, :user, :category, :date, :amount, :notes
+  attributes :category, :date, :amount, :notes
+
+  def category
+    self.object.category.name
+  end
 end

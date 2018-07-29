@@ -21,8 +21,8 @@ class Api::V1::UsersController < ApplicationController
     render json: @user.charts
   end
 
-  def profit_loss
-    render json: @user.table
+  def entries
+    render json: @user.entries.reverse
   end
 
   private
