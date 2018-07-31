@@ -36,9 +36,8 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def delete
-    @entry = Entry.find_by(user_id: params["user_id"], date: params["date"], amount: params["amount"], notes: params["notes"])
+    @entry = Entry.find(params[:id])
     render json: @entry.destroy
-
   end
 
 

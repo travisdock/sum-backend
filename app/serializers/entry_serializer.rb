@@ -1,6 +1,6 @@
 class EntrySerializer < ActiveModel::Serializer
   include ActionView::Helpers::NumberHelper
-  attributes :category, :date, :amount, :notes
+  attributes :id, :category, :date, :amount, :notes
 
   def category
     self.object.category.name
