@@ -6,7 +6,7 @@ class EntrySerializer < ActiveModel::Serializer
     self.object.category.name
   end
 
-  def amount
-    number_to_currency(self.object.amount)
-  end
+  # def amount
+  #   number_to_currency(self.object.amount)
+  # end
 end
