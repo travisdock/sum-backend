@@ -17,14 +17,14 @@ class User < ApplicationRecord
     # Group entries by month
     entries_by_month = entries.group_by{ |entry| entry.date.beginning_of_month }
     # Group month's entries by category
-    entries_by_month.transform_values! { |entries| entries.group_by{|e| e.category.name } }
+    entries_by_month.transform_values! { |entries| entries.group_by{|e| e.category_name } }
     # Change individual entries into sums by category and month
     entries_by_month.each do |month, categories|
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
 
     # Get entries for year by category
-    entries_for_year = entries.group_by{|e| e.category.name }
+    entries_for_year = entries.group_by{|e| e.category_name }
     # Sum entries for year by category
     entries_for_year.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     # Create object for pie_data
@@ -88,7 +88,7 @@ class User < ApplicationRecord
 
   # def table_entries
   #   entries = self.entries.reverse
-  # 
+  #
   #   entries = entries.map { |e| {category: e.category.name, date: e.date, amount: e.amount, notes: e.notes}  }
   #
   #   return entries

@@ -19,7 +19,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Use Serializer to customize data stream
-gem 'active_model_serializers'
+# gem 'active_model_serializers'
 # Use jwt tokens for auth
 gem 'jwt'
 # Use figaro for ENV variable for jwt token secret

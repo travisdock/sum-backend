@@ -15,9 +15,13 @@ class Entry < ApplicationRecord
     CSV.foreach(file, headers: true) do |row|
       data = row.to_hash
       @user = User.find(data["user_id"])
-      @category = @user.categories.find_by(name: data["category"])
+      @category = @user.categories.find_by(name: data["category_name"])
       data["category"] = @category
-      Entry.create(data)
+      unless @category.nil?
+        data["income"] = @category.income
+        data["gift"] = @category.gift
+        Entry.create(data)
+      end
     end
   end
 end

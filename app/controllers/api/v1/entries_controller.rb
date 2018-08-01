@@ -13,7 +13,7 @@ class Api::V1::EntriesController < ApplicationController
     @category = @user.categories.select{ |category| category.name == params[:category]}[0]
 
     if @category
-      @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @category )
+      @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @category, category_name: entry_params[:category], income: @category.income, gift: @category.gift)
       if @entry.save
         render json: @entry
       else
