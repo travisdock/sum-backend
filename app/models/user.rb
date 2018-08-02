@@ -49,7 +49,7 @@ class User < ApplicationRecord
     # Sort entries by month
     month_group = p_l_entries.group_by{ |entry| entry.date.beginning_of_month }
     # Sort months by profit or loss and total them
-    month_group.transform_values! { |entries| entries.group_by{|e| e.category.income }.transform_values! { |entries| entries.map(&:amount).inject(0, &:+)} }
+    month_group.transform_values! { |entries| entries.group_by{|e| e.income }.transform_values! { |entries| entries.map(&:amount).inject(0, &:+)} }
     # Find profit or loss
     month_group.transform_values! { |pl| (pl[true] || 0) - (pl[false] || 0) }
     # Convert to array and sort by month
