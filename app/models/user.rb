@@ -10,7 +10,8 @@ class User < ApplicationRecord
 
   def charts
     if self.entries.length == 0
-      return json: {error: "No entries"}
+      error = {error: "No entries"}
+      return error
     end
     ##################### PIE CHART #############################
     # Get only expense categories
@@ -71,7 +72,8 @@ class User < ApplicationRecord
 
   def profit_loss
     if self.entries.length == 0
-      return json: {error: "No entries"}
+      error = {error: "No entries"}
+      return error
     end
     # Get entries for the year
     entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
@@ -102,7 +104,8 @@ class User < ApplicationRecord
 
   def formatted_totals_averages
     if self.entries.length == 0
-      return json: {error: "No entries"}
+      error = {error: "No entries"}
+      return error
     end
     # Get start date for user to calculate averages
     start_date = self.entries.order(:date).first.date.month
