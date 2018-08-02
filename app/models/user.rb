@@ -70,6 +70,9 @@ class User < ApplicationRecord
   end
 
   def profit_loss
+    if self.entries.length == 0
+      return json: {error: "No entries"}
+    end
     # Get entries for the year
     entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
     # Sort entries by month
@@ -98,6 +101,9 @@ class User < ApplicationRecord
   # end
 
   def formatted_totals_averages
+    if self.entries.length == 0
+      return json: {error: "No entries"}
+    end
     # Get start date for user to calculate averages
     start_date = self.entries.order(:date).first.date.month
     # Get entries for user up to current day for total calculations
