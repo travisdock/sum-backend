@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_secure_password
 
   def charts
+    if self.entries.length == 0
+      return json: {error: "No entries"}
+    end
     ##################### PIE CHART #############################
     # Get only expense categories
     categories = self.categories.where(income: false)
