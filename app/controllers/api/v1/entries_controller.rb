@@ -1,12 +1,5 @@
 class Api::V1::EntriesController < ApplicationController
 
-
-  # Custom route for getting all entries of specific user
-  def index
-    @user = User.find(params[:user_id])
-    render json: @user.entries
-  end
-
   def create
     @user = User.find(params[:user_id])
 
@@ -38,6 +31,11 @@ class Api::V1::EntriesController < ApplicationController
   def delete
     @entry = Entry.find(params[:id])
     render json: @entry.destroy
+  end
+
+  def update
+    @entry = Entry.find(params[:id])
+    #update
   end
 
 
