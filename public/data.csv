@@ -1,0 +1,390 @@
+date,category_name,amount,notes,user_id
+2018-01-01,Living Space,925,January Rent,6
+2018-01-01,Misc,10.81,Apple Music,6
+2018-01-01,Transportation,121,Unlimited Metro Pass,6
+2018-01-01,Misc,10,Matt's Missionary Fund,6
+2018-01-01,Misc,5.5,Laundry,6
+2018-01-01,Gift Income,375.01,Gift CarryOver from 2017,6
+2018-01-01,Misc,50,Prime payment to Justin,6
+2018-01-01,Household,43.33,Groceries,6
+2018-01-02,Household,6.58,Groceries,6
+2018-01-03,Dining Out,3,Whole Foods Dinner,6
+2018-01-03,Gift Expense,26,Ex Officio Underwear from Paragon,6
+2018-01-04,Studio Income,393.616,Core Income,6
+2018-01-04,Tax Savings,98.404,20% Savings,6
+2018-01-04,Taxes Witheld,75.78,Tax Witheld,6
+2018-01-04,Dining Out,2,Pizza,6
+2018-01-05,Misc Income,95.392,Wendy Income,6
+2018-01-05,Tax Savings,23.848,20% Savings,6
+2018-01-05,Misc,36,Khiels for Roommates,6
+2018-01-05,Dining Out,3,Pizza,6
+2018-01-06,Gift Expense,10.5,Dan Weltner kindle book,6
+2018-01-06,Business Exp.,127.5,Carrie Campbells Pilates Workshop,6
+2018-01-07,Dining Out,10,Dinner w/Michael at Bar Coastal,6
+2017-01-08,Dining Out,2,Pizza,6
+2017-01-08,Misc,12.51,"New Watch, lost the last one",6
+2018-01-10,Dining Out,2.75,Lunch pastries,6
+2018-01-10,Household,15.82,Groceries,6
+2018-01-11,Misc,1,Singer duet on train,6
+2018-01-12,Studio Income,157.928,Equinox Income,6
+2018-01-12,Tax Savings,39.482,Savings,6
+2018-01-12,Dining Out,2,Pizza,6
+2018-01-05,Taxes Witheld,10.76,Taxes Withheld in driving check,6
+2018-01-13,Household,38.41,Groceries,6
+2018-01-14,Misc,1,Mexican singers on train,6
+2018-01-13,Misc,4.5,Laundry,6
+2018-01-14,Studio Income,118.88,Pilates Movement Income,6
+2018-01-14,Tax Savings,29.72,PM Check Savings,6
+2018-01-14,Taxes Witheld,13.4,PM Check Withholdings,6
+2018-01-14,Gift Expense,10,Nike Shirt w/Giftcard,6
+2018-01-15,Dining Out,3,Pizza,6
+2018-01-16,Misc,20,Haircut,6
+2018-01-17,Dining Out,2,Whole Foods snack,6
+2018-01-17,Gift Expense,145.95,New clothes at paragon,6
+2018-01-17,Gift Expense,96,Pants at Lulu,6
+2018-01-18,Misc Income,234.48,Core Income,6
+2018-01-18,Tax Savings,58.62,Savings,6
+2018-01-18,Taxes Witheld,27.15,Taxes Witheld,6
+2018-01-18,Misc,48.48,December Phone Bill,6
+2018-01-18,Dining Out,9.74,Dinner w/Nicole at Croque,6
+2018-01-19,Misc Income,462.96,Wendy Income,6
+2018-01-19,Tax Savings,115.74,Savings,6
+2018-01-19,Taxes Witheld,137.9,Taxes Withheld in driving check,6
+2018-01-20,Dining Out,18.21,Coffee with Jo,6
+2018-01-21,Dining Out,5,Halal,6
+2018-01-28,Studio Income,171.656,Pilates Movement Income,6
+2018-01-28,Tax Savings,42.914,Savings,6
+2018-01-28,Taxes Witheld,19.43,Taxes Withheld,6
+2018-01-22,Household,26.78,Groceries,6
+2018-01-22,Misc,4.5,Laundry,6
+2018-01-24,Dining Out,3,Whole foods,6
+2018-01-24,Misc,19.07,Notebookes for clients,6
+2018-01-24,Gift Expense,8.79,Fight Club book for Cameron,6
+2018-01-25,Dining Out,2,Pizza,6
+2018-01-25,Taxes Witheld,22.08,Equinox taxes from first check,6
+2018-01-26,Studio Income,356.632,Equinox Income,6
+2018-01-26,Tax Savings,89.158,Savings,6
+2018-01-26,Taxes Witheld,79.46,Taxes Witheld,6
+2018-01-26,Household,6,Ice Cream,6
+2018-01-28,Misc,5.25,Laundry,6
+2018-01-28,Household,36.34,Groceries,6
+2018-01-29,Gift Expense,32.99,Bluetooth keyboard,6
+2018-01-29,Dining Out,3,Pizza,6
+2018-01-31,Dining Out,3,Whole foods,6
+2018-01-23,Entertainment,9.95,MoviePass,6
+2018-02-01,Living Space,944,January Rent,6
+2018-02-01,Misc,10.81,Apple Music,6
+2018-02-01,Transportation,121,Unlimited Metro Pass,6
+2018-02-01,Misc,10,Matt's Missionary Fund,6
+2018-02-01,Entertainment,9.95,MoviePass,6
+2018-02-01,Misc Income,217.928,Core Income,6
+2018-02-01,Tax Savings,54.482,Savings,6
+2018-02-01,Taxes Witheld,24.89,Taxes Witheld,6
+2018-02-01,Gift Expense,11.99,Plant Bulb,6
+2018-02-01,Household,16.05,Groceries,6
+2018-02-02,Misc Income,524.264,Wendy Income,6
+2018-02-02,Tax Savings,131.066,Savings,6
+2018-02-02,Taxes Witheld,152.87,Taxes Withheld,6
+2018-02-04,Misc,4.5,Laundry,6
+2018-02-04,Misc,5.79,Cumin for Mary,6
+2018-02-05,Dining Out,2.5,Dude jipped me dollar pizza,6
+2018-02-05,Misc,1,Russian guitarist on train,6
+2018-02-06,Dining Out,2.5,Pizza went up :(,6
+2018-02-06,Household,11.68,Groceries,6
+2018-02-06,Dining Out,1,bagel for lunch,6
+2018-02-07,Dining Out,1,Bagel for dinner,6
+2018-02-09,Studio Income,329.04,Equinox Income,6
+2018-02-09,Tax Savings,82.26,Savings,6
+2018-02-09,Taxes Witheld,68.45,Taxes Withheld,6
+2018-02-10,Misc,4.5,Laundry,6
+2018-02-11,Misc,45.2,January Phone Bill,6
+2018-02-11,Household,37.23,Groceries,6
+2018-02-11,Studio Income,200.408,Pilates Movement Income,6
+2018-02-11,Tax Savings,50.102,Savings,6
+2018-02-11,Taxes Witheld,23.49,Taxes withheld,6
+2018-02-13,Misc,11.97,Playing Cards for HDR,6
+2018-02-12,Dining Out,2,Pizza,6
+2018-02-13,Business Exp.,56.43,Duet w/Kristin at Core,6
+2018-02-14,Misc,20,Haircut,6
+2018-02-15,Misc Income,221.816,Core Income,6
+2018-02-15,Tax Savings,55.454,Savings,6
+2018-02-15,Taxes Witheld,25.43,Taxes withheld,6
+2018-02-14,Dining Out,3,Pizza,6
+2018-02-14,Dining Out,2.5,Bagel and Scone,6
+2018-02-15,Misc,60.75,NY Driver's License,6
+2018-02-16,Misc Income,348.104,Wendy Income,6
+2018-02-16,Tax Savings,87.026,Savings,6
+2018-02-16,Taxes Witheld,74.87,Taxes withheld,6
+2018-02-16,Misc,31.57,New Iphone Battery,6
+2018-02-18,Misc,4.5,Laundry,6
+2018-02-18,Studio Income,204.016,Pilates Movement Income,6
+2018-02-18,Tax Savings,51.004,Savings,6
+2018-02-18,Taxes Witheld,23.98,Taxes Withheld,6
+2018-02-19,Misc,22.06,Donation to Brooke's half marathon,6
+2018-02-19,Household,19.07,Groceries,6
+2018-02-21,Dining Out,3,Pizza and cinamon rolls,6
+2018-02-22,Misc,4.5,Laundry,6
+2018-02-22,Household,6.69,Groceries,6
+2018-02-23,Studio Income,376.4,Equinox pay,6
+2018-02-23,Tax Savings,94.1,Savings,6
+2018-02-23,Taxes Witheld,87.75,Taxes withheld,6
+2018-02-24,Misc,2,Buskers on train,6
+2018-02-26,Misc,3,Laundry,6
+2018-02-26,Household,11.83,Groceries,6
+2018-02-28,Dining Out,2,Pizza lunch,6
+2018-03-01,Misc Income,282.848,Core Income,6
+2018-03-01,Tax Savings,70.712,Savings,6
+2018-03-01,Taxes Witheld,34.94,Taxes withheld,6
+2018-03-01,Living Space,944,January Rent,6
+2018-03-01,Misc,10.81,Apple Music,6
+2018-03-01,Transportation,121,Unlimited Metro Pass,6
+2018-03-01,Misc,10,Matt's Missionary Fund,6
+2018-03-01,Entertainment,9.95,MoviePass,6
+2018-03-01,Dining Out,1,bagel,6
+2018-03-02,Misc Income,247.56,Wendy Income,6
+2018-03-02,Tax Savings,61.89,Savings,6
+2018-03-02,Taxes Witheld,35.55,Taxes withheld,6
+2018-03-03,Household,23.12,Groceries,6
+2018-03-04,Dining Out,2.25,Bagel lunch,6
+2018-03-11,Studio Income,122.544,Pilates Movement Income,6
+2018-03-11,Tax Savings,30.636,Savigns,6
+2018-03-11,Taxes Witheld,13.82,Taxes Withheld,6
+2018-03-05,Dining Out,2,Pizza,6
+2018-03-09,Studio Income,231.92,Equinox Income,6
+2018-03-09,Tax Savings,57.98,Savings,6
+2018-03-09,Taxes Witheld,30.6,Taxes Withheld,6
+2018-03-09,Gift Expense,23.14,Dining out w/Michael y Mary,6
+2018-03-09,Dining Out,1,Pizza,6
+2018-03-10,Misc,1,Guy on train,6
+2018-03-11,Misc,4.5,Laundry,6
+2018-03-11,Household,31.53,Groceries,6
+2018-03-12,Dining Out,3,Pizza,6
+2018-03-13,Misc,20,Haircut,6
+2018-03-15,Misc Income,174.68,Core Income,6
+2018-03-15,Tax Savings,43.67,Savings,6
+2018-03-15,Taxes Witheld,19.7,Taxes Wittheld,6
+2018-03-16,Misc Income,713.36,Driving Income,6
+2018-03-16,Tax Savings,178.34,Savings,6
+2018-03-16,Taxes Witheld,199.9,Taxes withheld,6
+2018-03-18,Gift Income,50,Grandma+Grandpa Birthday gift,6
+2018-03-18,Gift Income,50,Amy+Matt Birthday gift,6
+2018-03-18,Misc,5.25,Laundry,6
+2018-03-18,Household,8.48,Groceries,6
+2018-03-18,Household,14.38,Groceries,6
+2018-03-18,Gift Income,50,Pilates Movement Birthday Gift,6
+2018-03-19,Dining Out,3,Pizza and Water,6
+2018-03-20,Gift Expense,19.99,Keyboard from Amazon,6
+2018-03-23,Studio Income,237.176,Equinox Income,6
+2018-03-23,Tax Savings,59.294,Savings,6
+2018-03-23,Taxes Witheld,32.53,Taxes Withheld,6
+2018-03-24,Gift Expense,39,Drinks w/Nancee,6
+2018-03-25,Studio Income,122.536,Pilates Movement Check,6
+2018-03-25,Tax Savings,30.634,Savings,6
+2018-03-25,Taxes Witheld,13.83,Taxes Withheld,6
+2018-03-25,Household,16.85,Groceries,6
+2018-03-26,Dining Out,2,Pizza,6
+2018-03-26,Misc,4.5,Laundry,6
+2018-03-29,Misc Income,269.2,Core Income,6
+2018-03-29,Tax Savings,67.3,Savings,6
+2018-03-29,Taxes Witheld,32.2,Taxes Withheld,6
+2018-03-29,Dining Out,2,Pizza,6
+2018-03-30,Misc Income,402.44,Wendy Income,6
+2018-03-30,Tax Savings,100.61,Savings,6
+2018-03-30,Taxes Witheld,96.95,Taxes Withheld,6
+2018-03-30,Misc Income,100,Happy Easter from the Vet,6
+2018-03-30,Household,16.13,Groceries,6
+2018-03-30,Misc,15.49,Stuff for not having kids,6
+2018-03-31,Dining Out,3.26,Chipotle w/giftcard,6
+2018-03-31,Dining Out,9,Jen's Roti Shop w/Nancee,6
+2018-04-01,Living Space,944,January Rent,6
+2018-04-01,Misc,10.81,Apple Music,6
+2018-04-01,Transportation,121,Unlimited Metro Pass,6
+2018-04-01,Misc,10,Matt's Missionary Fund,6
+2018-04-01,Entertainment,9.95,MoviePass,6
+2018-04-02,Misc,4.25,Laundry,6
+2018-04-03,Dining Out,2.5,Dumplings with Sharon + Nicole,6
+2018-04-04,Misc,1,Guitar Player Union Square,6
+2018-03-03,Misc,45,February Phone Bill,6
+2018-04-04,Misc,45,March Phone Bill,6
+2018-04-04,Gift Income,225,Dad's GST Gift,6
+2018-04-04,Gift Expense,179.97,Dad Birthday Gift,6
+2018-04-06,Studio Income,118.88,Equinox Check,6
+2018-04-06,Tax Savings,29.72,Savings,6
+2018-04-06,Taxes Witheld,13.4,Taxes Withheld,6
+2018-04-06,Dining Out,8,Halal at home,6
+2018-04-07,Household,22.95,Groceries,6
+2018-04-08,Studio Income,129.144,Pilates Movement Income,6
+2018-04-08,Tax Savings,32.286,Savings,6
+2018-04-08,Taxes Witheld,14.57,Taxes Withheld,6
+2018-04-08,Household,5,Ice Cream,6
+2018-04-11,Dining Out,2.9,Bagel and Scone,6
+2018-04-12,Misc Income,236.64,Core Income,6
+2018-04-12,Tax Savings,59.16,Savings,6
+2018-04-12,Taxes Witheld,27.45,Taxes Withheld,6
+2018-04-12,Entertainment,20.99,Gotham Comedy Club Tickets,6
+2018-04-12,Entertainment,28.05,Drinks at Gotham,6
+2018-04-12,Entertainment,20,Hookah after Gotham,6
+2018-04-12,Dining Out,5,Dumplings,6
+2018-04-12,Dining Out,1,Pizza after Hookah after Gotham,6
+2018-04-13,Misc Income,622.128,Wendy Income,6
+2018-04-13,Tax Savings,155.532,Savings,6
+2018-04-13,Taxes Witheld,203.94,Taxes Withheld,6
+2018-04-13,Dining Out,3,Pizza,6
+2018-04-14,Misc,4.75,Laundry,6
+2018-04-14,Dining Out,7.25,Dumplings w/Nancee,6
+2018-04-14,Dining Out,3,Lunch bagel and donut,6
+2018-04-15,Dining Out,10.83,Pasta at Pilates Movement,6
+2018-04-15,Household,14.55,Groceries,6
+2018-04-17,Misc,20,Donation for dad's solar trip,6
+2018-04-17,Misc,20,haircut,6
+2018-04-17,Dining Out,2,Pizza,6
+2018-04-20,Misc,1,Singer on train,6
+2018-04-20,Household,13.59,Groceries,6
+2018-04-20,Household,11.97,Floss,6
+2018-04-20,Studio Income,46.96,Equinox Last Check,6
+2018-04-20,Tax Savings,11.74,Savings,6
+2018-04-20,Taxes Witheld,5.3,Taxes Withheld,6
+2018-04-20,Misc Income,200,Wendy Parting Gift,6
+2018-04-21,Misc,89,Stupid Fucking Credit Card Fee that I should have cancelled a long time ago,6
+2018-04-22,Misc,6.25,Laundry,6
+2018-04-22,Studio Income,185.312,PM Income,6
+2018-04-22,Tax Savings,46.328,Savings,6
+2018-04-22,Taxes Witheld,21.36,Taxes Withheld,6
+2018-04-22,Household,10.77,Groceries,6
+2018-04-24,Dining Out,2,Pizza,6
+2018-04-26,Misc Income,172.472,Core Income,6
+2018-04-26,Tax Savings,43.118,Savings,6
+2018-04-26,Taxes Witheld,19.46,Taxes Withheld,6
+2018-04-27,Misc Income,499.408,Wendy Income,6
+2018-04-27,Tax Savings,124.852,Savings,6
+2018-04-27,Taxes Witheld,140.74,Taxes Withheld,6
+2018-04-28,Dining Out,2,Pizza,6
+2018-04-28,Misc,4.25,Laundry,6
+2018-04-29,Household,16.2,Groceries,6
+2018-05-01,Living Space,944,January Rent,6
+2018-05-01,Misc,10.81,Apple Music,6
+2018-05-01,Transportation,121,Unlimited Metro Pass,6
+2018-05-01,Misc,10,Matt's Missionary Fund,6
+2018-05-01,Entertainment,9.95,MoviePass,6
+2018-05-01,Misc,45,April Phone Bill,6
+2018-05-11,Misc,24,LastPass subscription,6
+2018-05-01,Household,8.96,Groceries,6
+2018-05-01,Gift Expense,59.68,Coding headphones,6
+2018-05-01,Misc,10,Brooke Pilatesology,6
+2018-05-05,Misc,5,Laundry,6
+2018-05-05,Dining Out,42.02,Dinner w/Nancee,6
+2018-05-06,Misc,1,Singers on train,6
+2018-05-06,Household,17.05,Groceries,6
+2018-05-06,Studio Income,143.08,PM Income,6
+2018-05-06,Tax Savings,35.77,Tax Savings,6
+2018-05-06,Taxes Witheld,16.15,Taxes Withheld,6
+2018-05-11,Dining Out,2,Pizza Friday Acces labs,6
+2018-05-11,Misc,1,Show time,6
+2018-05-12,Misc,4.5,Laundry,6
+2018-05-12,Household,15.9,Groceries,6
+2018-05-13,Household,8.58,Groceries,6
+2018-05-15,Household,7.89,Vinegar and Ice Cream,6
+2018-05-19,Misc,4.5,Laundry,6
+2018-05-19,Household,36.3,Groceries,6
+2018-05-19,Misc,16.92,New Bed Supplies,6
+2018-05-20,Misc,2,Good dancer on train,6
+2018-05-20,Studio Income,227.69,PM Income,6
+2018-05-20,Tax Savings,56.92,Tax Savings,6
+2018-05-20,Taxes Witheld,28.39,Taxes Withheld,6
+2018-05-20,Gift Income,50,Grandma+Grandpa Random Gift,6
+2018-05-26,Misc,4.5,Laundry,6
+2018-05-23,EBT,14.27,EBT Snap purchases,6
+2018-05-26,EBT,27.21,Snacks w/Nancee,6
+2018-05-27,EBT,47.53,Groceries,6
+2018-05-31,Dining Out,42,Last dinner w/Nancee,6
+2018-06-01,Living Space,944,January Rent,6
+2018-06-01,Misc,10.81,Apple Music,6
+2018-06-01,Transportation,121,Unlimited Metro Pass,6
+2018-06-01,Misc,10,Matt's Missionary Fund,6
+2018-06-01,Entertainment,9.95,MoviePass,6
+2018-06-01,Misc,45,May Phone Bill,6
+2018-06-01,Dining Out,4.71,Dollar Pizza Friday,6
+2018-06-01,Misc,10,Brooke Pilatesology,6
+2018-06-01,Misc,45,"Accidentally paid June Phone Bill, automatic payments now for upcoming month",6
+2018-06-02,EBT,61.83,Groceries,6
+2018-06-03,Studio Income,121.8,PM income,6
+2018-06-03,Tax Savings,30.45,Tax Savings,6
+2018-06-03,Taxes Witheld,13.74,Taxes Withheld,6
+2018-06-04,Misc,4.5,Laundry,6
+2018-06-08,Dining Out,3,Pizza,6
+2018-06-08,Dining Out,10,Dumplings w/Jesse and Chris,6
+2018-06-09,EBT,9.68,Ice Cream w/ Michael and Mary,6
+2018-06-10,EBT,57.2,Groceries,6
+2018-06-11,Misc,4.5,Laundry,6
+2018-06-17,Studio Income,125.47,PM income,6
+2018-06-17,Tax Savings,31.37,Tax Savings,6
+2018-06-17,Taxes Witheld,14.16,Taxes Withheld,6
+2018-06-13,EBT,8.27,Groceries/Snacks for school,6
+2018-06-14,Misc,10,Donated to Ana RedCross Birthday,6
+2018-06-15,Dining Out,3,Pizza,6
+2018-06-13,Misc,17.2,Justin Birthday Panorama,6
+2018-06-17,EBT,39.68,Groceries,6
+2018-06-17,Misc,1,Toilet Paper,6
+2018-06-17,Misc,2,Dancers on train,6
+2018-06-20,Misc,20,haircut,6
+2028-06-21,EBT,1.5,Avocado,6
+2018-06-22,Dining Out,3,Pizza Friday Acces labs,6
+2018-06-22,Misc,13.99,New Socks,6
+2018-06-23,Dining Out,4,Dumplings w/ Brooke,6
+2018-06-23,EBT,47.86,Groceries,6
+2018-06-24,Misc,4.5,Laundry,6
+2018-06-24,Dining Out,6,Fun w/ Mary and Michael,6
+2018-06-24,Household,8.31,Groceries and tp,6
+2018-06-24,Studio Income,50.624,PM income,6
+2018-06-24,Tax Savings,12.656,Savings,6
+2018-06-24,Taxes Witheld,5.72,Taxes Withheld,6
+2018-06-25,EBT,10.08,Lunch/Snacks,6
+2018-06-28,EBT,7.98,Snacks,6
+2018-06-28,Misc,10,Stuff from John,6
+2018-06-29,EBT,8.48,Snacks,6
+2018-06-29,Entertainment,13,Climbing w.Jesse and Chris,6
+2018-06-29,Misc,14.99,Swimsuit for LI,6
+2018-06-30,EBT,26.33,Groceries,6
+2018-07-01,Living Space,944,January Rent,6
+2018-07-01,Misc,10.81,Apple Music,6
+2018-07-01,Transportation,121,Unlimited Metro Pass,6
+2018-07-01,Misc,10,Matt's Missionary Fund,6
+2018-07-01,Entertainment,9.95,MoviePass,6
+2018-07-01,Misc,45,May Phone Bill,6
+2018-07-01,Misc,10,Brooke Pilatesology,6
+2018-07-02,EBT,1,Avocado for lunch,6
+2018-07-04,EBT,10.22,Groceries,6
+2018-07-05,Entertainment,3,IceCream for Jesse,6
+2018-07-05,Misc,8.7,Toothbrushes,6
+2018-07-07,Misc,2,Dancers on train,6
+2018-07-08,Misc,5.5,Laundry,6
+2018-07-06,Entertainment,9,Drink at Daryl going away,6
+2018-07-08,EBT,41.14,Groceries,6
+2018-07-08,Studio Income,32.38,PM income,6
+2018-07-08,Tax Savings,8.07,Tax Savings,6
+2018-07-08,Taxes Witheld,3.65,Taxes Withheld,6
+2018-07-09,Gift Expense,29.87,Deodorants for fun,6
+2018-07-11,Misc,20,Donation to Karina's Birthday Charity,6
+2018-07-12,Dining Out,7,Dumplings w/the Dumbo Boys,6
+2018-07-12,Entertainment,2,"Really good dancers on train, front tuck damn",6
+2018-07-13,Household,7.6,TP and Ziplocs,6
+2018-07-14,EBT,46.59,Groceries,6
+2018-07-15,Misc,4.5,Laundry,6
+2018-07-19,Dining Out,3,Dumplings,6
+2018-07-21,Entertainment,5.84,Incredibles 2 w/Mike (Surge Moviepass),6
+2018-07-20,Dining Out,20.74,Junior's after movie,6
+2018-07-21,EBT,33.32,Groceries,6
+2018-07-22,EBT,24.84,Groceries,6
+2018-07-22,Household,3.26,Paper Towels,6
+2018-07-22,Studio Income,55.03,Pilates Movement Income (I have given up putting stuff into savings.),6
+2018-07-26,Dining Out,3,Dumplings,6
+2018-07-27,Misc,1.75,Gatorade to ease the pain,6
+2018-07-28,Studio Income,40.36,Pilates Movement Income,6
+2018-07-28,Taxes Witheld,3.64,Taxes Withheld,6
+2018-07-22,Taxes Witheld,4.97,Taxes Withheld,6
+2018-07-29,Misc,4.5,Laundry,6
+2018-07-29,EBT,28.16,Groceries,6
+2018-07-28,Dining Out,1,Pizza lunch,6
+2018-07-27,Dining Out,14.68,flip Sigi w/brooke,6
+2018-07-30,EBT,10.37,Groceries,6
+2018-07-31,Misc,20,NYPL Donation,6
