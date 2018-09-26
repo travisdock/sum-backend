@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def charts
     if self.entries.length == 0
-      error = {error: "No entries"}
+      error = {error: "No Entries"}
       return error
     end
     ##################### PIE CHART #############################
@@ -18,6 +18,11 @@ class User < ApplicationRecord
     categories = self.categories.where(income: false)
     # Get entries for user for this year in expense categories
     entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: categories)
+    # If no expenses return error of no expenses so that frontend doesn't break
+    if entries.length == 0
+      error = {error: "No Expenses"}
+      return error
+    end 
     # Group entries by month
     entries_by_month = entries.group_by{ |entry| entry.date.beginning_of_month }
     # Group month's entries by category
@@ -27,8 +32,10 @@ class User < ApplicationRecord
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
 
+    # Get entries for all categories
+    all_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
     # Get entries for year by category
-    entries_for_year = entries.group_by{|e| e.category_name }
+    entries_for_year = all_entries.group_by{|e| e.category_name }
     # Sum entries for year by category
     entries_for_year.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     # Create object for pie_data
