@@ -32,10 +32,8 @@ class User < ApplicationRecord
       categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     end
 
-    # Get entries for all categories
-    all_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
     # Get entries for year by category
-    entries_for_year = all_entries.group_by{|e| e.category_name }
+    entries_for_year = entries.group_by{|e| e.category_name }
     # Sum entries for year by category
     entries_for_year.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     # Create object for charts array
@@ -67,74 +65,43 @@ class User < ApplicationRecord
     # p_l_formatted
     #############################################################
 
+    # Add p&l to charts array
     charts.push({"Profit & Loss": p_l_formatted})
-
+    # Return array
     return charts
-
-  end
-
-  def profit_loss
-    if self.entries.length == 0
-      error = {error: "No entries"}
-      return error
-    end
-    # Get entries for the year
-    entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year)
-    # Sort entries by month
-    month_group = entries.group_by{ |entry| entry.date.beginning_of_month }
-    # Sort months by profit or loss and total them
-    month_group.transform_values! { |entries| entries.group_by{|e| e.category.income }.transform_values! { |entries| entries.map(&:amount).inject(0, &:+)} }
-    # Find profit or loss
-    month_group.transform_values! { |pl| (pl[true] || 0) - (pl[false] || 0) }
-    # Convert to array and sort by month
-    p_l_by_month_sorted = Array(month_group).sort_by! { |e| e[0] }
-    # Create base format for chart
-    p_l_formatted = [["x"], ["Profit/Loss"]]
-    # Map and push to base format
-    p_l_by_month_sorted.map { |arr| p_l_formatted[0].push(arr[0]); p_l_formatted[1].push(arr[1]) }
-
-    return p_l_formatted
-
-  end
-
-  # def table_entries
-  #   entries = self.entries.reverse
-  #
-  #   entries = entries.map { |e| {category: e.category.name, date: e.date, amount: e.amount, notes: e.notes}  }
-  #
-  #   return entries
-  # end
-
-  def formatted_totals_averages
-    if self.entries.length == 0
-      error = {error: "No entries"}
-      return error
-    end
-    # Get start date for user to calculate averages
-    start_date = self.entries.order(:date).first.date.month
-    # Get entries for user up to current day for total calculations
-    total_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month)
-    # Get entries for user up to last month for average calculations
-    average_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month.last_month)
-
-    average_entries = average_entries.group_by{ |entry| entry.category.name }
-    # Group entries by category
-    entries_by_category = total_entries.group_by{ |entry| entry.category.name }
-    # Tranform individual entries into totals and averages by category
-    entries_by_category.transform_values! { |entries|
-      # byebug
-      average = entries.select{ |entry| entry.date.to_time < Time.new.beginning_of_month}
-      { "total" => entries.map(&:amount).inject(0, &:+),
-        "average" => average.map(&:amount).inject(0, &:+)/(Time.new.month-start_date)
-       }
-    }
-    # entries.map(&:amount).inject(0, &:+)/(Time.new.month-start_date)
-    # entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month)
-    # entries.map(&:amount).inject(0, &:+)
-    return entries_by_category
   end
 
 end
+
+# def formatted_totals_averages
+#   if self.entries.length == 0
+#     error = {error: "No entries"}
+#     return error
+#   end
+#   # Get start date for user to calculate averages
+#   start_date = self.entries.order(:date).first.date.month
+#   # Get entries for user up to current day for total calculations
+#   total_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month)
+#   # Get entries for user up to last month for average calculations
+#   average_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month.last_month)
+
+#   average_entries = average_entries.group_by{ |entry| entry.category.name }
+#   # Group entries by category
+#   entries_by_category = total_entries.group_by{ |entry| entry.category.name }
+#   # Tranform individual entries into totals and averages by category
+#   entries_by_category.transform_values! { |entries|
+#     # byebug
+#     average = entries.select{ |entry| entry.date.to_time < Time.new.beginning_of_month}
+#     { "total" => entries.map(&:amount).inject(0, &:+),
+#       "average" => average.map(&:amount).inject(0, &:+)/(Time.new.month-start_date)
+#      }
+#   }
+#   # entries.map(&:amount).inject(0, &:+)/(Time.new.month-start_date)
+#   # entries.where(date: Time.new.beginning_of_year..Time.new.end_of_month)
+#   # entries.map(&:amount).inject(0, &:+)
+#   return entries_by_category
+# end
+
 
 # def category_totals(date)
 #   self.categories.map { |category| category =>  }
