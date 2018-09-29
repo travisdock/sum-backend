@@ -21,5 +21,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore dummy file I use for testing
+/public/data.csv
+
 # Ignore application configuration
 /config/application.yml
