@@ -22,7 +22,7 @@ class User < ApplicationRecord
     if entries.length == 0
       error = {error: "No Expenses"}
       return error
-    end 
+    end
     # Group entries by month
     entries_by_month = entries.group_by{ |entry| entry.date.beginning_of_month }
     # Group month's entries by category
@@ -65,10 +65,25 @@ class User < ApplicationRecord
     # p_l_formatted
     #############################################################
 
+
+    #####################STATS###################################
+
+
+
+
+    #############################################################
     # Add p&l to charts array
     charts.push({"Profit & Loss": p_l_formatted})
-    # Return array
-    return charts
+    charts_hash = Hash.new
+
+    # Turn array into hash for easier use on frontend
+    charts.each do |chart|
+      key = chart.keys.first
+      charts_hash[key] = chart[key]
+    end
+
+    # Return hash
+    return charts_hash
   end
 
 end
