@@ -38,16 +38,15 @@ class User < ApplicationRecord
     entries_for_year = all_entries.group_by{|e| e.category_name }
     # Sum entries for year by category
     entries_for_year.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
-    # Create object for pie_data
+    # Create object for charts array
     entries_for_year = entries_for_year.map { |k, v| [k, v] }
     entries_for_year = {entries.first.date.strftime("%Y") => entries_for_year}
-    # Add formatted month entries to pie data object
-    pie_data = entries_by_month.map {|e| {e.first.strftime("%B") => e[1].map {|k,v| [k,v]} } }
+    # Add formatted month entries to charts array
+    charts = entries_by_month.map {|e| {e.first.strftime("%B") => e[1].map {|k,v| [k,v]} } }
     # Order data by month
-    pie_data.sort_by! {|e| Date::MONTHNAMES.index(e.keys[0]) }
+    charts.sort_by! {|e| Date::MONTHNAMES.index(e.keys[0]) }
     # Add year data
-    pie_data.push(entries_for_year)
-    # pie_data
+    charts.push(entries_for_year)
     ########################################################
 
     ################ PROFIT LOSS CHART #####################
@@ -68,10 +67,7 @@ class User < ApplicationRecord
     # p_l_formatted
     #############################################################
 
-    charts = {
-      p_l: p_l_formatted,
-      pie_data: pie_data
-    }
+    charts.push({"Profit & Loss": p_l_formatted})
 
     return charts
 
