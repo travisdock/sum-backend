@@ -107,6 +107,7 @@ class User < ApplicationRecord
       "total_income" => total_income,
       "total_expense" => total_expense,
       "avg_exp_per_month" => avg_exp_per_month,
+      "avg_inc_per_month" => avg_inc_per_month,
       "annual_p_l" => annual_p_l,
       "est_annual_inc" => est_annual_inc,
       "est_annual_exp" => est_annual_exp,
