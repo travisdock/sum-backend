@@ -69,7 +69,8 @@ class User < ApplicationRecord
     # Average Total Expense Per Month (calcuated as "per 30 days")
     # Get users input age in days to calculate averages
     start_date = expense_entries.order(:date).first.date
-    total_days = (Date.today - start_date).to_i
+    end_date = expense_entries.order(:date).last.date
+    total_days = (end_date - start_date).to_i
     months = total_days / 30
 
     #if user is less than two months old return string
@@ -104,13 +105,13 @@ class User < ApplicationRecord
     avg_cat_month = entries_by_category.transform_values! { |sum| sum / months}
 
     stats = {
-      "total_income" => total_income,
-      "total_expense" => total_expense,
-      "avg_exp_per_month" => avg_exp_per_month,
-      "avg_inc_per_month" => avg_inc_per_month,
-      "annual_p_l" => annual_p_l,
-      "est_annual_inc" => est_annual_inc,
-      "est_annual_exp" => est_annual_exp,
+      "Total Income" => total_income,
+      "Total Expenses" => total_expense,
+      "Average Expense per Month" => avg_exp_per_month,
+      "Average Income per Month" => avg_inc_per_month,
+      "Annual Profit/Loss" => annual_p_l,
+      "Estimated Annual Income" => est_annual_inc,
+      "Estimated Annual Expense" => est_annual_exp,
       "avg_cat_month" => avg_cat_month
     }
 
