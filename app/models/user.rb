@@ -105,21 +105,51 @@ class User < ApplicationRecord
     avg_cat_month = entries_by_category.transform_values! { |sum| sum / months}
 
     stats = {
-      "Total Income" => total_income,
-      "Total Expenses" => total_expense,
-      "Average Expense per Month" => avg_exp_per_month,
-      "Average Income per Month" => avg_inc_per_month,
-      "Annual Profit/Loss" => annual_p_l,
-      "Estimated Annual Income" => est_annual_inc,
-      "Estimated Annual Expense" => est_annual_exp,
-      "avg_cat_month" => avg_cat_month
+      Date.today.year => {
+        "Total Income" => total_income,
+        "Total Expenses" => total_expense,
+        "Average Expense per Month" => avg_exp_per_month,
+        "Average Income per Month" => avg_inc_per_month,
+        "Annual Profit/Loss" => annual_p_l,
+        "Estimated Annual Income" => est_annual_inc,
+        "Estimated Annual Expense" => est_annual_exp,
+        "avg_cat_month" => avg_cat_month
+      }
     }
 
     #############################################################
 
     ################MONTH STATS#################################
+    
+    # Totals By Category By Month
+    # Group entries by month
+    monthly_stats = self.entries.group_by{ |entry| entry.date.beginning_of_month.strftime("%B") }
+    # Group month's entries by category
+    monthly_stats.transform_values! { |entries| entries.group_by{|e| e.category_name } }
+    # Change individual entries into sums by category and month
+    monthly_stats.each do |month, categories|
+      categories.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
+    end
 
+    # Total Income by Month
+    income_by_month = income_entries.group_by{ |entry| entry.date.beginning_of_month.strftime("%B") }
+    income_by_month.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
 
+    # Total Expense by Month
+    expense_by_month = expense_entries.group_by{ |entry| entry.date.beginning_of_month.strftime("%B") }
+    expense_by_month.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
+
+    # Place income and expense info into month category hash, then create p&l
+    monthly_stats.each do |month, info|
+      monthly_stats[month]["Total Income"] = income_by_month[month]
+      monthly_stats[month]["Total Expense"] = expense_by_month[month]
+      monthly_stats[month]["Profit/Loss"] = income_by_month[month] - expense_by_month[month]
+    end
+
+    # Add to stats
+    monthly_stats.each do |month, info|
+      stats[month] = monthly_stats[month]
+    end
 
     ############################################################
 
