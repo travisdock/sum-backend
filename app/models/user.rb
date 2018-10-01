@@ -92,9 +92,18 @@ class User < ApplicationRecord
     annual_p_l = total_income - total_expense
 
     # Estimated Annual Income
-    est_annual_inc = avg_inc_per_month * 12
+    if total_days < 60
+      est_annual_inc = "not enough data"
+    else
+      est_annual_inc = avg_inc_per_month * 12
+    end
+    
     # Estimated Annual Expense
-    est_annual_exp = avg_exp_per_month * 12
+    if total_days < 60
+      est_annual_exp = "not enough data"
+    else
+      est_annual_exp = avg_inc_per_month * 12
+    end
 
     # Average Expense per Month by Category
     # Get entries for year by category
@@ -102,7 +111,7 @@ class User < ApplicationRecord
     # Sum entries for year by category
     entries_by_category.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     # Divide sums by months variable from earlier
-    avg_cat_month = entries_by_category.transform_values! { |sum| sum / months}
+    avg_cat_month = entries_by_category.transform_values! { |sum| total_days < 60 ? "not enough data" : sum / months }
 
     stats = {
       Date.today.year => {
@@ -141,9 +150,9 @@ class User < ApplicationRecord
 
     # Place income and expense info into month category hash, then create p&l
     monthly_stats.each do |month, info|
-      monthly_stats[month]["Total Income"] = income_by_month[month]
-      monthly_stats[month]["Total Expense"] = expense_by_month[month]
-      monthly_stats[month]["Profit/Loss"] = income_by_month[month] - expense_by_month[month]
+      monthly_stats[month]["Total Income"] = income_by_month[month] || 0
+      monthly_stats[month]["Total Expense"] = expense_by_month[month] || 0
+      monthly_stats[month]["Profit/Loss"] = monthly_stats[month]["Total Income"] - monthly_stats[month]["Total Expense"]
     end
 
     # Add to stats
