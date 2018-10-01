@@ -69,8 +69,8 @@ class User < ApplicationRecord
     # Average Total Expense Per Month (calcuated as "per 30 days")
     # Get users input age in days to calculate averages
     start_date = expense_entries.order(:date).first.date
-    end_date = expense_entries.order(:date).last.date
-    total_days = (end_date - start_date).to_i
+    # end_date = expense_entries.order(:date).last.date
+    total_days = (Date.today - start_date).to_i
     months = total_days / 30
 
     #if user is less than two months old return string
