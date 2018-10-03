@@ -6,17 +6,17 @@ class Api::V1::EntriesController < ApplicationController
     @category = @user.categories.select{ |category| category.name == params[:category]}[0]
 
     if @category
-      @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @category, category_name: entry_params[:category], income: @category.income, gift: @category.gift)
+      @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @category, category_name: entry_params[:category], income: @category.income, untracked: @category.untracked)
       if @entry.save
         render json: @entry
       else
         render json: { errors: @entry.errors.full_messages }
       end
     else
-      @new_category = Category.create(name: category_params[:category], income: category_params[:income], gift: category_params[:gift])
+      @new_category = Category.create(name: category_params[:category], income: category_params[:income], untracked: category_params[:untracked])
       if @new_category.save
         @user.categories << @new_category
-        @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @new_category, category_name: entry_params[:category], income: @new_category.income, gift: @new_category.gift)
+        @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category: @new_category, category_name: entry_params[:category], income: @new_category.income, untracked: @new_category.untracked)
         if @entry.save
           render json: @user.categories
         else
@@ -46,7 +46,7 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def category_params
-    params.permit(:category, :income, :gift)
+    params.permit(:category, :income, :untracked)
   end
 
 end

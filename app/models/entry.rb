@@ -20,7 +20,7 @@ class Entry < ApplicationRecord
       data["category"] = @category
       unless @category.nil?
         data["income"] = @category.income
-        data["gift"] = @category.gift
+        data["untracked"] = @category.untracked
         Entry.create(data)
       end
     end

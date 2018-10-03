@@ -10,10 +10,10 @@ User.destroy_all
 Entry.destroy_all
 Category.destroy_all
 
-rent = Category.create(name: "Rent", income: false, gift: false)
-groceries = Category.create(name: "Groceries", income: false, gift: false)
-salary = Category.create(name: "Salary", income: true, gift: false)
-gift = Category.create(name: "Gift", income: false, gift: true)
+rent = Category.create(name: "Rent", income: false, untracked: false)
+groceries = Category.create(name: "Groceries", income: false, untracked: false)
+salary = Category.create(name: "Salary", income: true, untracked: false)
+gift = Category.create(name: "Gift", income: false, untracked: true)
 
 travis = User.create(username: "travis", password: "1234", email: "travisdock@gmail.com")
 justin = User.create(username: "justin", password: "1234", email: "justing@gmail.com")
