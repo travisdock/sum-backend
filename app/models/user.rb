@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def charts
     if self.entries.length == 0
-      error = {error: "No Entries"}
+      error = {error: "No Expenses"}
       return error
     end
 
@@ -202,7 +202,7 @@ end
 
 def formatted_totals_averages
   if self.entries.length == 0
-    error = {error: "No entries"}
+    error = {error: "No Expenses"}
     return error
   end
   # Get start date for user to calculate averages
