@@ -12,7 +12,7 @@
     end
   
     def confirm_and_login_user(user)
-      post '/users/login', params: {username: user.username, password: "test"}
+      post '/api/v1/login', params: {username: user.username, password: "test"}
       return json['jwt']
     end
   end
