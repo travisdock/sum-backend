@@ -12,7 +12,6 @@ class Api::V1::AuthController < ApplicationController
   end
 
   def show
-    byebug
     if logged_in
       render json: {username: current.username, id: current.id, categories: current.categories}, status: 200
     else
