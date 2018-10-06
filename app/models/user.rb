@@ -217,7 +217,6 @@ def formatted_totals_averages
   entries_by_category = total_entries.group_by{ |entry| entry.category.name }
   # Tranform individual entries into totals and averages by category
   entries_by_category.transform_values! { |entries|
-    # byebug
     average = entries.select{ |entry| entry.date.to_time < Time.new.beginning_of_month}
     { "total" => entries.map(&:amount).inject(0, &:+),
       "average" => average.map(&:amount).inject(0, &:+)/(Time.new.month-start_date)
