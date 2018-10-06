@@ -18,11 +18,20 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def charts
-    render json: @user.charts
+    if logged_in
+      render json: @user.charts, status: 200
+    else
+      render json: {error: 'Token Invalid'}, status: 401
+    end
+    
   end
 
   def entries
-    render json: @user.entries.reverse
+    if logged_in
+      render json: @user.entries.reverse, status: 200
+    else
+      render json: {error: 'Token Invalid'}, status: 401
+    end
   end
 
   private

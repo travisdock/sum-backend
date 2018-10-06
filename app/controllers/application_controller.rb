@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   end
 
   def current
-    @user ||= User.find_by(id: user_id)
+    @user = User.find_by(id: user_id)
   end
 
   def user_id
