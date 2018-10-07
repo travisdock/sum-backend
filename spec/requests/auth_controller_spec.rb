@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative '../support/auth_helper'
 
-RSpec.describe "Finances API", :type => :request do
+RSpec.describe "Auth Conroller Specs", :type => :request do
   include RequestSpecHelper
 
   describe 'Login' do
