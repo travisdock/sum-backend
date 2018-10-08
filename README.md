@@ -14,5 +14,6 @@ https://sumfinance-b89c6.firebaseapp.com/
 
 ## To Do:
 - [ ] Continue writing RSpec tests
-- [ ] Finish entry update route
+- [ ] Add entry update route
+- [ ] Add category update and delete routes
 - [ ] Add Travis CI for a staging, and production (master) branch
