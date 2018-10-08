@@ -1,8 +1,9 @@
 # README
 <p align="center">
-<img src="https://user-images.githubusercontent.com/36681963/46574008-ffcad780-c96a-11e8-830f-2c6f33e6af13.png" alt="rails" title="Ruby on Rails">
-<img src="https://user-images.githubusercontent.com/36681963/46574002-e9bd1700-c96a-11e8-845b-b10094b22720.jpg" alt="rspec" title="RSpec">
-<img src="https://user-images.githubusercontent.com/36681963/46583393-29940500-ca24-11e8-948b-9fd2591490de.jpg" alt="heroku" title="Heroku">
+<img src="https://user-images.githubusercontent.com/36681963/46639201-cba21300-cb32-11e8-9db8-27cabb7ed5f0.jpg" alt="rails" title="Built with Ruby on Rails">
+<img src="https://user-images.githubusercontent.com/36681963/46574002-e9bd1700-c96a-11e8-845b-b10094b22720.jpg" alt="rspec" title="Tested with RSpec">
+<img src="https://user-images.githubusercontent.com/36681963/46639150-84b41d80-cb32-11e8-88c5-a7903ffad743.jpg" alt="rspec" title="CI with Travis CI">
+<img src="https://user-images.githubusercontent.com/36681963/46583393-29940500-ca24-11e8-948b-9fd2591490de.jpg" alt="heroku" title="Deployed on Heroku">
 </p>
 
 ## Description
@@ -16,4 +17,4 @@ https://sumfinance-b89c6.firebaseapp.com/
 - [ ] Continue writing RSpec tests
 - [ ] Add entry update route
 - [ ] Add category update and delete routes
-- [ ] Add Travis CI for a staging, and production (master) branch
+- [X] Add Travis CI for a staging, and production (master) branch(added 10/8/18)
