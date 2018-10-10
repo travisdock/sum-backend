@@ -10,3 +10,7 @@ deploy:
   app:
     staging: sumfinance-staging
     production: sumfinance
+branches:
+  only:
+  - staging
+  - production
