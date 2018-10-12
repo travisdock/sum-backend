@@ -25,10 +25,14 @@ RSpec.describe "User Controller Specs", :type => :request do
   end
 
   describe 'GET user entries' do
+
+    let(:user_with_data) {create(:user_with_data)}
+
     it 'returns all of a users entries in a specific order' do
       jwt = confirm_and_login_user(user_with_data)
-      get "api/v1/entries/#{user_with_data.id}", headers: { "Authorization" => "#{jwt}" }
+      get "/api/v1/entries/#{user_with_data.id}", headers: { "Authorization" => "#{jwt}" }
       expect(response).to have_http_status(200)
+      # TODO: add response match
     end
   end
 end
