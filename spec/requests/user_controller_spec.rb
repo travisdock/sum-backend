@@ -32,7 +32,7 @@ RSpec.describe "User Controller Specs", :type => :request do
       jwt = confirm_and_login_user(user_with_data)
       get "/api/v1/entries/#{user_with_data.id}", headers: { "Authorization" => "#{jwt}" }
       expect(response).to have_http_status(200)
-      # TODO: add response match
+      expect(response.body).to match(/amount\":\"15.0\",\"notes\":\"test income\",\"created_at\":/)
     end
   end
 end
