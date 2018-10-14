@@ -14,5 +14,5 @@ branches:
   only:
   - staging
   - production
-before_script:
-  - bundle exec rake db:test:prepare
+# before_script:
+#   - bundle exec rake db:test:prepare
