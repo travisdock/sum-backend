@@ -14,6 +14,12 @@ branches:
   only:
   - staging
   - production
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+before_script:
+  - cp config/database.yml.travis config/database.yml
 # script:
 #   - bin/rake db:migrate RAILS_ENV=test
 #   - bin/rake
