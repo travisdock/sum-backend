@@ -14,3 +14,5 @@ branches:
   only:
   - staging
   - production
+before_script:
+  - rake db:migrate RAILS_ENV=test
