@@ -11,11 +11,11 @@ FactoryBot.define do
         sequence(:username) { |n| "tester#{n}" }
         email { "test@test.com" }
         password { "test" }
-        after(:create) do |user, evaluator|
-            expense_category = create(:expense_category, users: [user])
-            income_category = create(:income_category, users: [user])
-            # create_list(:expense, 2, user: user, category: expense_category)
-            # create_list(:income, 2, user: user, category: income_category)
+        # after(:create) do |user, evaluator|
+        #     expense_category = create(:expense_category, users: [user])
+        #     income_category = create(:income_category, users: [user])
+        #     create_list(:expense, 2, user: user, category: expense_category)
+        #     create_list(:income, 2, user: user, category: income_category)
         end
     end
 

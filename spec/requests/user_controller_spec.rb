@@ -7,6 +7,10 @@ RSpec.describe "User Controller Specs", :type => :request do
 
     let(:user_with_data) {create(:user_with_data)}
     let(:user_without_data) {create(:user)}
+    expense_category = create(:expense_category, users: [user_with_data])
+    income_category = create(:income_category, users: [user_with_data])
+    create_list(:expense, 2, user: user_with_data, category: expense_category)
+    create_list(:income, 2, user: user_with_data, category: income_category)
 
     it 'returns correct format for a user with expenses' do
       jwt = confirm_and_login_user(user_with_data)
