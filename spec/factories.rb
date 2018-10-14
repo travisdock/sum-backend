@@ -16,7 +16,7 @@ FactoryBot.define do
         #     income_category = create(:income_category, users: [user])
         #     create_list(:expense, 2, user: user, category: expense_category)
         #     create_list(:income, 2, user: user, category: income_category)
-        end
+        # end
     end
 
     factory :category do
