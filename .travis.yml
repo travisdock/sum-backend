@@ -14,7 +14,6 @@ branches:
   only:
   - staging
   - production
-script:
-  - bin/rake db:test:prepare RAILS_ENV=test
-  - bin/rake db:migrate RAILS_ENV=test
-  - bin/rake
+# script:
+#   - bin/rake db:migrate RAILS_ENV=test
+#   - bin/rake
