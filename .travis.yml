@@ -17,7 +17,7 @@ branches:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  # - cp config/database.yml.travis config/database.yml
+  - cp config/database.yml.travis config/database.yml
 # script:
 #     - bin/rake db:create RAILS_ENV=test
 #   - bin/rake db:migrate RAILS_ENV=test
