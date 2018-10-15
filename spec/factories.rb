@@ -20,7 +20,7 @@ FactoryBot.define do
     end
 
     factory :category do
-        sequence(:id) { |n| 3 + n }
+        sequence(:id) { |n| Category.maximum(:id) + 1 }
         factory :expense_category do
             name { "expense_category" }
             income { false }
