@@ -45,7 +45,11 @@ class Api::V1::EntriesController < ApplicationController
     if logged_in
       @entry = Entry.find(params[:id])
       #TODO: update
-      render json: @entry.destroy, status: 200
+      if @entry.update(params)
+        render json: @entry
+      else
+        render json: {error: 'Update did not succeed, please try again.'}, status: 202
+      end
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
