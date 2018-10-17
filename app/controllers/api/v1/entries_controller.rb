@@ -44,11 +44,24 @@ class Api::V1::EntriesController < ApplicationController
   def update
     if logged_in
       @entry = Entry.find(params[:id])
-      #TODO: update
-      if @entry.update(params)
-        render json: @entry
+
+      if @entry
+        if params[:category]
+          @category = @user.categories.select{ |category| category.name == params[:category]}[0]
+          params[:category] = @category
+          params[:category_name] = @category.name
+          if @entry.update(entry_params)
+            render json: @entry, status: 202
+          else
+            render json: {error: 'Update did not succeed, not valid category update.'}, status: 204
+          end
+        elsif @entry.update(entry_params)
+          render json: @entry, status: 202
+        else
+          render json: {error: 'Update did not succeed, not valid entry update.'}, status: 204
+        end
       else
-        render json: {error: 'Update did not succeed, please try again.'}, status: 202
+        render json: {error: 'Update did not succeed, not valid entry.'}, status: 204
       end
     else
       render json: {error: 'Token Invalid'}, status: 401
@@ -59,7 +72,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.permit(:user_id, :category, :date, :amount, :notes)
+    params.permit(:user_id, :category, :date, :amount, :notes, :category_name)
   end
 
   def category_params
