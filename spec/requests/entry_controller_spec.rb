@@ -20,7 +20,8 @@ RSpec.describe "User Controller Specs", type: :request do
                 jwt = confirm_and_login_user(user_with_data)
                 patch "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(202)
-            #   expect(response.body).to match(//)
+                expect(response.body).to match(/"amount\":\"45.0\"/)
+                expect(user_with_data.entries.first.amount).to eq(45)
             end
         end
         
@@ -35,9 +36,11 @@ RSpec.describe "User Controller Specs", type: :request do
             
             it "updates the entry" do
                 jwt = confirm_and_login_user(user_with_data)
+                expect(user_with_data.entries.second.amount).to eq(15)
                 patch "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(202)
-            #   expect(response.body).to match(//)
+                expect(response.body).to match(/"amount\":\"50.0\",\"category_name\":\"income_category\"/)
+                expect(user_with_data.entries.second.category_name).to eq("income_category")
             end
         end
     end
