@@ -1,8 +1,5 @@
-
-<p align="center">
 [![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Staging+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=staging)
 [![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Production+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=production)
-</p>
 
 # Sum Finance Backend
 
