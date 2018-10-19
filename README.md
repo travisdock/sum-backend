@@ -1,3 +1,7 @@
+
+[![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&logo=travis&label=Staging+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=staging)
+[![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&logo=travis&label=Production+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=production)
+
 # README
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36681963/46639201-cba21300-cb32-11e8-9db8-27cabb7ed5f0.jpg" alt="rails" title="Built with Ruby on Rails">
