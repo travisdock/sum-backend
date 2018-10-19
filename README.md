@@ -1,8 +1,11 @@
 
+<p align="center">
 [![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Staging+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=staging)
 [![Travis (.org) branch](https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Production+Build)](https://travis-ci.org/travisdock/sum-backend.svg?branch=production)
+</p>
 
-# README
+# Sum Finance Backend
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36681963/46639201-cba21300-cb32-11e8-9db8-27cabb7ed5f0.jpg" alt="rails" title="Built with Ruby on Rails">
 <img src="https://user-images.githubusercontent.com/36681963/46639336-5e42b200-cb33-11e8-87df-2b30f6c3deb1.jpg" alt="rspec" title="Tested with RSpec">
