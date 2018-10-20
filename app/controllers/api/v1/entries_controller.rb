@@ -46,10 +46,11 @@ class Api::V1::EntriesController < ApplicationController
       @entry = Entry.find(params[:id])
 
       if @entry
-        if params[:category]
-          @category = @user.categories.select{ |category| category.name == params[:category]}[0]
-          params[:category] = @category
-          params[:category_name] = @category.name
+        if params[:category_name] != @entry.category_name
+          @category = @user.categories.select{ |category| category.name == params[:category_name]}[0]
+          params[:category_id] = @category.id
+          params[:income] = @category.income
+          params[:untracked] = @category.untracked
           if @entry.update(entry_params)
             render json: @entry, status: 202
           else
@@ -72,7 +73,7 @@ class Api::V1::EntriesController < ApplicationController
   private
 
   def entry_params
-    params.permit(:user_id, :category, :date, :amount, :notes, :category_name)
+    params.permit(:user_id, :category_id, :date, :amount, :notes, :category_name, :income, :untracked)
   end
 
   def category_params
