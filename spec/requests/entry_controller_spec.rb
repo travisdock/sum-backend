@@ -30,7 +30,9 @@ RSpec.describe "User Controller Specs", type: :request do
                 {
                     id: user_with_data.entries.second.id,
                     amount: 50,
-                    category: "income_category"
+                    category_name: "income_category",
+                    category_id: user_with_data.entries.second.category.id,
+                    income: user_with_data.entries.second.income
                 }
             end
             
@@ -39,8 +41,10 @@ RSpec.describe "User Controller Specs", type: :request do
                 expect(user_with_data.entries.second.amount).to eq(15)
                 patch "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(202)
-                expect(response.body).to match(/"amount\":\"50.0\",\"category_name\":\"income_category\"/)
+                expect(response.body).to match(/\"category_name\":\"income_category\"/)
+                expect(response.body).to match(/\"income\":true,\"untracked\":false/)
                 expect(user_with_data.entries.second.category_name).to eq("income_category")
+                expect(user_with_data.entries.second.category_id).to eq(Category.where(name: "income_category").first.id)
             end
         end
     end
