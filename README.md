@@ -19,6 +19,5 @@ https://sumfinance-b89c6.firebaseapp.com/
 
 ## To Do:
 - [ ] Continue writing RSpec tests
-- [ ] Add entry update route
 - [ ] Add category update and delete routes
 - [ ] Dependent: destroy (category entries)
