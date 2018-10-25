@@ -1,10 +1,10 @@
+
+# Sum Finance Backend
 <p align="center">
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=staging"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Staging+Build" alt="Staging Build Status"></a>
   <br>
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=production"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Production+Build" alt="Production Build Status"></a>
 </p>
-
-# Sum Finance Backend
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/36681963/46639201-cba21300-cb32-11e8-9db8-27cabb7ed5f0.jpg" alt="rails" title="Built with Ruby on Rails">
