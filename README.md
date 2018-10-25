@@ -2,7 +2,6 @@
 # Sum Finance Backend
 <p align="center">
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=staging"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Staging+Build" alt="Staging Build Status"></a>
-  <br>
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=production"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Production+Build" alt="Production Build Status"></a>
 </p>
 
