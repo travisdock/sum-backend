@@ -19,11 +19,16 @@ class User < ApplicationRecord
     expense_categories = self.categories.where(income: false)
     # EXPENSE ENTRIES
     expense_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: expense_categories, untracked: false)
+    # EXPENSE ENTRIES UP TO LAST MONTH
+    monthly_avg_exp_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.last_month.end_of_month, category: expense_categories, untracked: false)
 
     # INCOME CATEGORIES
     income_categories = self.categories.where(income: true)
     # INCOME ENTRIES
     income_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: income_categories)
+    # INCOME CATEGORIES UP TO LAST MONTH
+    monthly_avg_inc_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.last_month.end_of_month, category: income_categories)
+    
 
     ##################### PIE CHART #############################
     # If no expenses return error of no expenses so that frontend doesn't break
@@ -65,19 +70,24 @@ class User < ApplicationRecord
     total_income = income_entries.inject(0){|sum,e| sum + e.amount }
     # Total Expense
     total_expense = expense_entries.inject(0){|sum,e| sum + e.amount }
+    # Total Expenses up to Last Month
+    monthly_expense_total = monthly_avg_exp_entries.inject(0){|sum,e| sum + e.amount }
+    # Total Income up to Last Month
+    monthly_income_total = monthly_avg_inc_entries.inject(0){|sum,e| sum + e.amount }
+
 
     # Average Total Expense Per Month (calcuated as "per 30 days")
     # Get users input age in days to calculate averages
     start_date = expense_entries.order(:date).first.date
     # end_date = expense_entries.order(:date).last.date
     total_days = (Date.today - start_date).to_i
-    months = total_days / 30
+    months = (total_days / 30).floor
 
     #if user is less than two months old return string
     if total_days < 60
       avg_exp_per_month = "not enough data"
     else
-      avg_exp_per_month = total_expense / months
+      avg_exp_per_month = monthly_expense_total / months
     end
     
     # Average Total Income Per Month (calcuated as "per 30 days")
@@ -85,7 +95,7 @@ class User < ApplicationRecord
     if total_days < 60
       avg_inc_per_month = "not enough data"
     else
-      avg_inc_per_month = total_income / months
+      avg_inc_per_month = monthly_income_total / months
     end
 
     # Total Profit - Loss
@@ -107,7 +117,7 @@ class User < ApplicationRecord
 
     # Average Expense per Month by Category
     # Get entries for year by category
-    entries_by_category = self.entries.group_by{|e| e.category_name }
+    entries_by_category = monthly_avg_exp_entries.group_by{|e| e.category_name }
     # Sum entries for year by category
     entries_by_category.transform_values! { |entries| entries.map(&:amount).inject(0, &:+) }
     # Divide sums by months variable from earlier
