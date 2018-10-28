@@ -13,8 +13,8 @@
 </p>
 
 ## Description
-This is a learning and working project, by which I mean I actually use it and I also use it to learn. I built it to track my personal finances and I use it as such, but I also use it whenever I want to learn something.  I am constantly tweaking it and I hope to continue that for years to come as my knowledge and experience evolve.
-The [frontend](https://github.com/travisdock/sum-frontend) is a React PWA hosted on Firebase.  The back end is a Rails API hosted on Heroku.
+This is a learning and working project, by which I mean I actually use it and I also use it to learn. I built it to track my personal finances and I use it as such, but I also use it whenever I want to learn something.  I am constantly tweaking it and I hope to continue that for years to come as my knowledge and experience evolve. The backend is a Ruby on Rails app, tested with RSpec, and hosted on Heroku.
+The [frontend](https://github.com/travisdock/sum-frontend) is a React PWA hosted on Firebase.
 
 ## Try It Out
 https://sumfinance-b89c6.firebaseapp.com/
