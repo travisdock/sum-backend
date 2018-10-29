@@ -10,19 +10,13 @@ class Entry < ApplicationRecord
   validates :user_id, :presence => true
   validates :category_id, :presence => true
 
-  def self.import
-    csv_text = File.read(Rails.root.join('public', 'data.csv'))
+  def self.import(file, current_user)
+    csv_text = File.read(file)
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
       data = row.to_hash
-      @user = User.find(data["user_id"])
-      @category = @user.categories.find_by(name: data["category_name"])
-      data["category"] = @category
-      unless @category.nil?
-        data["income"] = @category.income
-        data["untracked"] = @category.untracked
-        Entry.create(data)
-      end
+      @user = User.find(current_user)
+      Entry.create(data, @user)
     end
   end
 end
