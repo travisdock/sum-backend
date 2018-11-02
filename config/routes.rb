@@ -12,12 +12,11 @@ Rails.application.routes.draw do
 
       resources :users, except: [:new, :edit, :index, :show]
 
-      #I used custom routes because you would only ever want to retrieve the categories or entries specific to the current user:
-
-      #custom route for getting the entries of a specific user
+      #custom route for entries
       post '/entries', to: 'entries#create'
       delete '/entries', to: 'entries#delete'
       patch '/entries', to: 'entries#update'
+      post '/entries/import', to: 'entries#import'
 
     end
   end

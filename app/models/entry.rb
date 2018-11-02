@@ -10,12 +10,14 @@ class Entry < ApplicationRecord
   validates :user_id, :presence => true
   validates :category_id, :presence => true
 
-  def self.import(file, current_user)
-    csv_text = File.read(file)
+  def self.import(params)
+    # @user = User.find(username: params['user'])
+    csv_text = File.read(params['file'].tempfile)
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
       data = row.to_hash
-      @user = User.find(current_user)
+      byebug
+      @category = @user.categories.select{ |category| category.name == data["category"]}[0]
       Entry.create(data, @user)
     end
   end

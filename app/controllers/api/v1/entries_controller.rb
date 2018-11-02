@@ -68,7 +68,10 @@ class Api::V1::EntriesController < ApplicationController
       render json: {error: 'Token Invalid'}, status: 401
     end
   end
-
+  
+  def import
+    Entry.import(import_params)
+  end
 
   private
 
@@ -78,6 +81,10 @@ class Api::V1::EntriesController < ApplicationController
 
   def category_params
     params.permit(:category_name, :income, :untracked)
+  end
+
+  def import_params
+    params.permit(:file, :user)
   end
 
 end
