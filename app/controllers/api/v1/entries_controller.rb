@@ -70,7 +70,15 @@ class Api::V1::EntriesController < ApplicationController
   end
   
   def import
-    Entry.import(import_params)
+    begin
+      Entry.import(import_params)
+      @user = User.find(import_params[:user_id])
+      render json: {message: "success", categories: @user.categories }
+    rescue => e
+      logger.error e.message
+      logger.error e.backtrace.join("\n")
+      render json: {message: "Error saving CSV entries to database"}
+    end
   end
 
   private
@@ -84,7 +92,7 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def import_params
-    params.permit(:file, :user)
+    params.permit(:file, :user_id)
   end
 
 end
