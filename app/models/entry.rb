@@ -36,7 +36,7 @@ class Entry < ApplicationRecord
               cat.destroy
             end
           end
-          raise "Error adding #{@entry.errors.full_messages} to queue: #{@entry.date} +++ #{@entry.category} +++  #{@entry.amount}"
+          raise "Error adding an entry (Date: #{@entry.date}, Category: #{@entry.category.name}, Amount: #{@entry.amount}, Notes: #{@entry.notes}) to the queue because of the following error:  #{@entry.errors.full_messages}"
         end
       else
         @new_category = Category.new(name: data['Category'], income: false, untracked: false)
@@ -53,7 +53,7 @@ class Entry < ApplicationRecord
                 cat.destroy
               end
             end
-            raise "Error adding entry: #{@entry.errors.full_messages} +++ #{@entry.date} +++ #{@entry.category} +++  #{@entry.amount}"
+            raise "Error adding an entry (Date: #{@entry.date}, Category: #{@entry.category.name}, Amount: #{@entry.amount}, Notes: #{@entry.notes}) to because of the following error:  #{@entry.errors.full_messages}"
           end
         else
           if created_categories.length > 0
@@ -61,7 +61,7 @@ class Entry < ApplicationRecord
               cat.destroy
             end
           end
-          raise "Error adding category: #{@new_category.errors.full_messages} +++ #{@new_category.name}"
+          raise "Error adding new category (Name: #{@new_category.name}) for an entry (amount: #{data['Amount']}, date: #{data['Date']}, notes: #{data['Notes']}) because of the following error: #{@new_category.errors.full_messages}"
         end
       end
     end

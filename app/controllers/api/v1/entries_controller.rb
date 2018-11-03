@@ -75,9 +75,7 @@ class Api::V1::EntriesController < ApplicationController
       @user = User.find(import_params[:user_id])
       render json: {message: "Success! Your data is now in Sum.", categories: @user.categories }
     rescue => e
-      logger.error e.message
-      logger.error e.backtrace.join("\n")
-      render json: {message: "Error saving CSV entries to database"}
+      render json: {message: e.message}
     end
   end
 
