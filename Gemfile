@@ -30,6 +30,8 @@ gem 'awesome_print'
 gem 'rack-cors'
 # Use New Relic RPM for monitoring
 gem 'newrelic_rpm'
+# Use Coveralls for test coverage
+gem 'coveralls', require: false
 ##############################################################
 
 # Use ActiveStorage variant
