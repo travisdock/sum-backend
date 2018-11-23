@@ -3,7 +3,8 @@
 <p align="center">
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=staging"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Staging+Build" alt="Staging Build Status"></a>
   <a href="https://travis-ci.org/travisdock/sum-backend.svg?branch=production"><img src="https://img.shields.io/travis/travisdock/sum-backend/production.svg?style=plastic&label=Production+Build" alt="Production Build Status"></a>
-  <a href='https://coveralls.io/github/travisdock/sum-backend?branch=production'><img src='https://coveralls.io/repos/github/travisdock/sum-backend/badge.svg?branch=production' alt='Coverage Status' /></a>
+  <a href='https://coveralls.io/github/travisdock/sum-backend?branch=production'><img 
+  src="https://img.shields.io/coveralls/travisdock/sum-backend/production.svg?style=plastic&label=Coveralls+Coverage" alt='Coverage Status' /></a>
 
 </p>
 
