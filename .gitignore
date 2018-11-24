@@ -29,3 +29,6 @@
 
 # Ignore coverage files
 /coverage/*
+
+# Ignore DS_store
+/spec/.DS_Store
