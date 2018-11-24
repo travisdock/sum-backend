@@ -59,6 +59,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 params['file'] = @file
                 post '/api/v1/entries/import', params: params
                 expect(response.body).to match(/Success!/)
+                expect(user.entries.first.category.name).to eq("New Category")
             end
         end
     end
