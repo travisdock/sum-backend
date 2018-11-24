@@ -1,11 +1,11 @@
 require 'rails_helper'
 require_relative '../support/auth_helper'
 
-RSpec.describe "User Controller Specs", type: :request do
+RSpec.describe "Entry Controller Specs", type: :request do
     include RequestSpecHelper
-    let(:entry) {create(:expense)}
+    
     describe "PATCH /api/v1/entries" do
-
+        let(:entry) {create(:expense)}
         let(:user_with_data) {create(:user_with_data)}
 
         context "with valid parameters (no category update)" do
@@ -48,4 +48,19 @@ RSpec.describe "User Controller Specs", type: :request do
             end
         end
     end
-  end
+
+    describe "POST /api/v1/entries/import" do
+        let(:user) {create(:user)}
+        context "with a valid file it imports the entries correctly" do
+            it "imports a csv file correctly maybe" do
+                @file = fixture_file_upload('/files/valid-test.csv', 'text/xml')
+                params = Hash.new
+                params['user_id'] = user.id
+                params['file'] = @file
+                post '/api/v1/entries/import', params: params
+                expect(response.body).to match(/Success!/)
+            end
+        end
+    end
+
+end
