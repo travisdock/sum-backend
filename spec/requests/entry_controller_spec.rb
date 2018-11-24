@@ -49,6 +49,22 @@ RSpec.describe "Entry Controller Specs", type: :request do
         end
     end
 
+    describe "DELETE /api/v1/entries" do
+        let(:user_with_data) {create(:user_with_data)}
+        let(:valid_params) do
+            { id: user_with_data.entries.second.id }
+        end
+        context "given a validated user with data deletes an entry" do
+            it "deletes the entry" do
+                jwt = confirm_and_login_user(user_with_data)
+                expect(user_with_data.entries.second.id).to eq(10)
+                delete "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                expect(user_with_data.entries.second.id).to_not eq(10)
+            end
+        end
+    end
+
     describe "POST /api/v1/entries/import" do
         let(:user) {create(:user)}
         context "given a valid csv file" do
