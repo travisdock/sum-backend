@@ -63,6 +63,12 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 expect(user_with_data.entries.second.id).to_not eq(10)
             end
         end
+        context "given an invalidated user" do
+            it "responds with appropriate error" do
+                delete "/api/v1/entries", params: valid_params
+                expect(response).to have_http_status(401)
+            end
+        end
     end
 
     describe "POST /api/v1/entries/import" do
