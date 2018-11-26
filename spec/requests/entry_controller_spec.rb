@@ -170,5 +170,4 @@ RSpec.describe "Entry Controller Specs", type: :request do
             end
         end
     end
-
 end
