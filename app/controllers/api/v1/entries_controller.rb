@@ -71,12 +71,16 @@ class Api::V1::EntriesController < ApplicationController
   end
   
   def import
-    begin
-      Entry.import(import_params)
-      @user = User.find(import_params[:user_id])
-      render json: {message: "Success! Your data is now in Sum.", categories: @user.categories }
-    rescue => e
-      render json: {message: e.message}
+    if logged_in
+      begin
+        Entry.import(import_params)
+        @user = User.find(import_params[:user_id])
+        render json: {message: "Success! Your data is now in Sum.", categories: @user.categories }
+      rescue => e
+        render json: {message: e.message}
+      end
+    else
+      render json: {error: 'Token Invalid'}, status: 401
     end
   end
 

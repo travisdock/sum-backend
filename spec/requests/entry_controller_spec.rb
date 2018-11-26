@@ -149,11 +149,12 @@ RSpec.describe "Entry Controller Specs", type: :request do
         let(:user) {create(:user)}
         context "given a valid csv file" do
             it "imports it as expected and adds the entry and category" do
+                jwt = confirm_and_login_user(user)
                 @file = fixture_file_upload('/files/valid-test.csv', 'text/xml')
                 params = Hash.new
                 params['user_id'] = user.id
                 params['file'] = @file
-                post '/api/v1/entries/import', params: params
+                post '/api/v1/entries/import', params: params, headers: { "Authorization" => "#{jwt}" }
                 expect(response.body).to match(/Success!/)
                 expect(user.categories.length).to eq(1)
                 expect(user.entries.first.category.name).to eq("New Category")
@@ -161,12 +162,13 @@ RSpec.describe "Entry Controller Specs", type: :request do
             end
         end
         context "given an invalid csv file" do
-            it "gives the proper error messaging and does not add anything to the users categories or entries" do
+            it "gives the proper error messaging and does not add to the users categories or entries" do
+                jwt = confirm_and_login_user(user)
                 @file = fixture_file_upload('/files/invalid-test.csv', 'text/xml')
                 params = Hash.new
                 params['user_id'] = user.id
                 params['file'] = @file
-                post '/api/v1/entries/import', params: params
+                post '/api/v1/entries/import', params: params, headers: { "Authorization" => "#{jwt}" }
                 expect(response.body).to match(/Error/)
                 expect(user.categories.length).to eq(0)
                 expect(user.entries.length).to eq(0)
