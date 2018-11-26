@@ -24,9 +24,12 @@ RSpec.describe "Entry Controller Specs", type: :request do
             end
             it "creates a new entry and category" do
                 jwt = confirm_and_login_user(@user)
+                expect(@user.categories.length).to eq(0)
+                expect(@user.entries.length).to eq(0)
                 post "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(200)
                 expect(response.body).to match(/test category/)
+                @user.reload
                 expect(@user.categories.length).to eq(1)
                 expect(@user.entries.length).to eq(1)
             end
