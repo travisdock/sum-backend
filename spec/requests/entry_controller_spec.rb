@@ -3,6 +3,77 @@ require_relative '../support/auth_helper'
 
 RSpec.describe "Entry Controller Specs", type: :request do
     include RequestSpecHelper
+
+    describe "POST /api/v1/entries" do
+        before(:each) do
+            @user = create(:user)
+        end
+
+        context "when logged in and with valid parameters" do
+            let(:valid_params) do
+                {
+                    user_id: @user.id,
+                    date: "1/12/18",
+                    amount: "1.25",
+                    notes: "this is a test entry",
+                    category_name: "test category",
+                    income: false,
+                    untracked: false
+
+                }
+            end
+            it "creates a new entry and category" do
+                jwt = confirm_and_login_user(@user)
+                post "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                expect(response.body).to match(/test category/)
+                expect(@user.categories.length).to eq(1)
+                expect(@user.entries.length).to eq(1)
+            end
+        end
+
+        context "when logged in but with an invalid entry" do
+            let(:invalid_params) do
+                {
+                    user_id: @user.id,
+                    date: "1/12/18",
+                    notes: "test entry #2",
+                    category_name: "test category #2",
+                    income: false,
+                    untracked: false
+                }
+            end
+            it "responds with appropriate errors and does not create entry or category" do
+                jwt = confirm_and_login_user(@user)
+                post "/api/v1/entries", params: invalid_params, headers: { "Authorization" => "#{jwt}" }
+                expect(response.body).to match(/errors/)
+                expect(@user.categories.length).to eq(0)
+                expect(Category.all.length).to eq(0)
+                expect(@user.entries.length).to eq(0)
+                expect(Entry.all.length).to eq(0)
+            end
+        end
+
+        context "when not logged in responds appropriately" do
+            let(:valid_params) do
+                {
+                    user_id: @user.id,
+                    date: "1/12/18",
+                    amount: "1.25",
+                    notes: "this is a test entry",
+                    category_name: "test category",
+                    income: false,
+                    untracked: false
+
+                }
+            end
+            it "creates a new entry and category" do
+                post "/api/v1/entries", params: valid_params
+                expect(response).to have_http_status(401)
+                expect(response.body).to match(/Token Invalid/)
+            end
+        end
+    end
     
     describe "PATCH /api/v1/entries" do
         let(:entry) {create(:expense)}

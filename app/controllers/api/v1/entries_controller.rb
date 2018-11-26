@@ -21,6 +21,7 @@ class Api::V1::EntriesController < ApplicationController
           if @entry.save
             render json: @user.categories
           else
+            @new_category.destroy
             render json: { errors: @entry.errors.full_messages }
           end
         else
