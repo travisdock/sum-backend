@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  # before_action :authorized
-  #add auth to every route
 
   def issue_token(payload)
     JWT.encode(payload, ENV["jwt_token_secret"], 'HS256')
@@ -20,10 +18,6 @@ class ApplicationController < ActionController::API
     rescue JWT::DecodeError
       [{}]
     end
-  end
-
-  def authorized
-    render json: {message: "No valid token"}, status: 401 unless logged_in
   end
 
   def logged_in
