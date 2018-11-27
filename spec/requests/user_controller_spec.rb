@@ -28,11 +28,13 @@ RSpec.describe "User Controller Specs", :type => :request do
 
     let(:user_with_data) {create(:user_with_data)}
 
-    it 'returns all of a users entries in a specific order' do
+    it 'returns all of a users entries in order beginning with most recent' do
       jwt = confirm_and_login_user(user_with_data)
       get "/api/v1/entries/#{user_with_data.id}", headers: { "Authorization" => "#{jwt}" }
       expect(response).to have_http_status(200)
-      expect(response.body).to match(/amount\":\"15.0\",\"notes\":\"test income\",\"created_at\":/)
+      entries = JSON.parse(response.body)
+      expect(Date.parse(entries.first['date'])).to be < Date.parse(entries.second['date'])
+      expect(Date.parse(entries.second['date'])).to be < Date.parse(entries.laste['date'])
     end
   end
 end

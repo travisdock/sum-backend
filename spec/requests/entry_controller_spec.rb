@@ -131,10 +131,11 @@ RSpec.describe "Entry Controller Specs", type: :request do
         context "given a validated user with data deletes an entry" do
             it "deletes the entry" do
                 jwt = confirm_and_login_user(user_with_data)
-                expect(user_with_data.entries.second.id).to eq(10)
+                expect(user_with_data.entries.length).to eq(8)
                 delete "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(200)
-                expect(user_with_data.entries.second.id).to_not eq(10)
+                user_with_data.reload
+                expect(user_with_data.entries.length).to eq(7)
             end
         end
         context "given an invalidated user" do

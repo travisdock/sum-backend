@@ -9,8 +9,14 @@ FactoryBot.define do
             after(:create) do |user, evaluator|
                 expense_category = create(:expense_category, users: [user])
                 income_category = create(:income_category, users: [user])
-                create_list(:expense, 2, user: user, category: expense_category)
-                create_list(:income, 2, user: user, category: income_category)
+                create(:expense, user: user, category: expense_category, date: Time.now)
+                create(:expense, user: user, category: expense_category, date: 1.day.ago)
+                create(:expense, user: user, category: expense_category, date: 1.year.ago)
+                create(:expense, user: user, category: expense_category, date: 2.years.ago)
+                create(:expense, user: user, category: income_category, date: Time.now)
+                create(:expense, user: user, category: income_category, date: 1.day.ago)
+                create(:expense, user: user, category: income_category, date: 1.year.ago)
+                create(:expense, user: user, category: income_category, date: 2.years.ago)
             end
         end
     end
