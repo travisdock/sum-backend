@@ -9,7 +9,12 @@ class User < ApplicationRecord
   has_secure_password
 
   def charts
-    if self.entries.length == 0
+    if self
+        .entries
+        .where(
+          date: Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view
+        ).end_of_year)
+        .length == 0
       error = {error: "No Expenses"}
       return error
     end
@@ -18,16 +23,16 @@ class User < ApplicationRecord
     # EXPENSE CATEGORIES
     expense_categories = self.categories.where(income: false)
     # EXPENSE ENTRIES
-    expense_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: expense_categories, untracked: false)
+    expense_entries = self.entries.where(date: Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year, category: expense_categories, untracked: false)
     # EXPENSE ENTRIES UP TO LAST MONTH
-    monthly_avg_exp_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.last_month.end_of_month, category: expense_categories, untracked: false)
+    monthly_avg_exp_entries = self.entries.where(date: Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).last_month.end_of_month, category: expense_categories, untracked: false)
 
     # INCOME CATEGORIES
     income_categories = self.categories.where(income: true)
     # INCOME ENTRIES
-    income_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.end_of_year, category: income_categories)
+    income_entries = self.entries.where(date: Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year, category: income_categories)
     # INCOME CATEGORIES UP TO LAST MONTH
-    monthly_avg_inc_entries = self.entries.where(date: Time.new.beginning_of_year..Time.new.last_month.end_of_month, category: income_categories)
+    monthly_avg_inc_entries = self.entries.where(date: Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).last_month.end_of_month, category: income_categories)
     
 
     ##################### PIE CHART #############################

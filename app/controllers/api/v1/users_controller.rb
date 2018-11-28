@@ -28,7 +28,13 @@ class Api::V1::UsersController < ApplicationController
 
   def entries
     if logged_in
-      render json: @user.entries.reverse, status: 200
+      render json: 
+        @user
+          .entries
+          .where(
+            date: Date.commercial(@user.year_view).beginning_of_year..Date.commercial(@user.year_view
+          ).end_of_year)
+          .reverse, status: 200
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
