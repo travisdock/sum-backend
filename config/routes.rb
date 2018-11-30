@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get '/charts/:user_id', to: 'users#charts'
       get '/entries/:user_id', to: 'users#entries'
 
+      # User Routes
       resources :users, except: [:new, :edit, :index, :show]
 
       #custom route for entries
