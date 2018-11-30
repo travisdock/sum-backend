@@ -76,8 +76,9 @@ RSpec.describe "User Controller Specs", :type => :request do
       expect(thisyear_user.year_view).to eq(1.year.ago.year)
     end
 
-    it 'updates the users password when given that info' do
-    
+    it 'does not update user if not authenticated' do
+      patch "/api/v1/users/#{thisyear_user.id}", params: {user_id: thisyear_user.id, year_view: 1.year.ago.year}
+      expect(response.body).to match(/Token Invalid/)
     end
   end
 end
