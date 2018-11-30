@@ -11,10 +11,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    # if @user
-    #   @user.update(password: params[:password])
-    #   render json: { msg: "Password Updated!" }
-    # end
+    if logged_in
+      @user.update(update_params)
+      render json: @user
+    else
+      render json: {error: 'Token Invalid'}, status: 401
+    end
   end
 
   def charts
@@ -33,8 +35,9 @@ class Api::V1::UsersController < ApplicationController
           .entries
           .where(
             date: Date.commercial(@user.year_view).beginning_of_year..Date.commercial(@user.year_view
-          ).end_of_year)
-          .reverse, status: 200
+            ).end_of_year
+          ).reverse,
+          status: 200
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
@@ -43,6 +46,10 @@ class Api::V1::UsersController < ApplicationController
   private
   def user_params
     params.permit(:username, :password, :email)
+  end
+
+  def update_params
+    params.permit(:username, :password, :email, :year_view)
   end
 
   def set_user

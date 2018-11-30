@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :entries
   validates :username, :presence => true
   validates :username, :uniqueness => true
-  validates :password, :presence => true
+  validates :password, :presence => true, on: :create
   validates :email, :presence => true
   has_secure_password
 
