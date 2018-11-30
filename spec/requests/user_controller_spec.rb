@@ -65,7 +65,6 @@ RSpec.describe "User Controller Specs", :type => :request do
 
   describe 'PATCH user' do
     let(:thisyear_user) {create(:user_with_data, year_view: Date.current.year)}
-    let(:twoyear_user) {create(:user_with_data, year_view: 2.years.ago.year)}
 
     it 'updates the users year_view when given that info' do
       jwt = confirm_and_login_user(thisyear_user)

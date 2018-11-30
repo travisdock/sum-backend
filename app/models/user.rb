@@ -8,6 +8,10 @@ class User < ApplicationRecord
   validates :email, :presence => true
   has_secure_password
 
+  def years
+    return self.entries.map{|entry| entry.date.year}.uniq
+  end
+
   def charts
     if self
         .entries
