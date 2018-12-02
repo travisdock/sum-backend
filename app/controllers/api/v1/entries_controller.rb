@@ -81,7 +81,16 @@ class Api::V1::EntriesController < ApplicationController
       begin
         Entry.import(import_params)
         @user = User.find(import_params[:user_id])
-        render json: {message: "Success! Your data is now in Sum.", categories: @user.categories }
+        render json: {
+          message: "Success! Your data is now in Sum.",
+          user: {
+            username: @user.username,
+            id: @user.id,
+            categories: @user.current_categories,
+            year_view: @user.year_view,
+            years: @user.years
+          }
+        }
       rescue => e
         render json: {message: e.message}
       end
