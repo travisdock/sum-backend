@@ -12,7 +12,7 @@ RSpec.describe "User Controller Specs", :type => :request do
       jwt = confirm_and_login_user(thisyear_user)
       get "/api/v1/charts/#{thisyear_user.id}", headers: { "Authorization" => "#{jwt}" }
       expect(response).to have_http_status(200)
-      expect(response.body).to match(/\"Total Expense\":\"30.0\"/)
+      expect(response.body).to match(/\"Total Expense\":\"15.0\"/)
     end
 
     it 'returns No Expenses for a user with no expenses' do
