@@ -11,6 +11,11 @@ class User < ApplicationRecord
   def years
     return self.entries.map{|entry| entry.date.year}.uniq
   end
+
+  def current_categories
+    year_range = Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year
+    return self.categories.where(created_at: year_range)
+  end
   
   def charts
     year_range = Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year

@@ -8,7 +8,7 @@ class Api::V1::AuthController < ApplicationController
       render json: {
         username: user.username,
         id: user.id, jwt: token,
-        categories: user.categories,
+        categories: user.current_categories,
         year_view: user.year_view,
         years: user.years
         }, status: 200
@@ -22,7 +22,7 @@ class Api::V1::AuthController < ApplicationController
       render json: {
         username: current.username,
         id: current.id,
-        categories: current.categories,
+        categories: current.current_categories,
         year_view: current.year_view,
         years: current.years
         }, status: 200
