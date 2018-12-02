@@ -12,8 +12,17 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     if logged_in
-      @user.update(update_params)
-      render json: @user
+      if @user.update(update_params)
+        render json: {
+          username: @user.username,
+          id: @user.id,
+          categories: @user.current_categories,
+          year_view: @user.year_view,
+          years: @user.years
+        }
+      else
+        render json: {error: 'update error...'}
+      end
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
@@ -34,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
         @user
           .entries
           .where(
-            date: Date.commercial(@user.year_view).beginning_of_year..Date.commercial(@user.year_view
+            date: DateTime.new(@user.year_view).beginning_of_year..DateTime.new(@user.year_view
             ).end_of_year
           ).reverse,
           status: 200

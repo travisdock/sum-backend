@@ -13,12 +13,12 @@ class User < ApplicationRecord
   end
 
   def current_categories
-    year_range = Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year
+    year_range = DateTime.new(self.year_view).beginning_of_year..DateTime.new(self.year_view).end_of_year
     return self.categories.where(created_at: year_range)
   end
   
   def charts
-    year_range = Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year
+    year_range = DateTime.new(self.year_view).beginning_of_year..DateTime.new(self.year_view).end_of_year
     if self.entries.where(date: year_range).length == 0
       error = {error: "No Expenses"}
       return error
@@ -26,9 +26,11 @@ class User < ApplicationRecord
     
     ################## USEFUL THINGS #############################
     if self.year_view == Date.current.year
-      last_month_range = Date.commercial(self.year_view).beginning_of_year..Date.current.last_month.end_of_month
+      last_month_range = DateTime.new(self.year_view).beginning_of_year..Date.current.last_month.end_of_month
     elsif self.year_view < Date.current.year
-      last_month_range = Date.commercial(self.year_view).beginning_of_year..Date.commercial(self.year_view).end_of_year
+      last_month_range = DateTime.new(self.year_view).beginning_of_year..DateTime.new(self.year_view).end_of_year
+    elsif self.year_view > Date.current.year
+      last_month_range = DateTime.new(self.year_view).beginning_of_year..DateTime.new(self.year_view).end_of_year
     end
 
     # EXPENSE ENTRIES
@@ -94,7 +96,9 @@ class User < ApplicationRecord
     if self.year_view == Date.current.year
       total_days = (Date.today - start_date).to_i
     elsif self.year_view < Date.current.year
-      total_days = (Date.commercial(self.year_view).end_of_year - start_date).to_i
+      total_days = (DateTime.new(self.year_view).end_of_year - start_date).to_i
+    elsif self.year_view > Date.current.year
+      total_days = 0
     end
     months = (total_days / 30).floor
 

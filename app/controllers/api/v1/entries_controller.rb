@@ -19,7 +19,13 @@ class Api::V1::EntriesController < ApplicationController
           @user.categories << @new_category
           @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category_id: @new_category.id, category_name: @new_category.name, income: @new_category.income, untracked: @new_category.untracked)
           if @entry.save
-            render json: @user.categories
+            render json: {
+              username: @user.username,
+              id: @user.id,
+              categories: @user.current_categories,
+              year_view: @user.year_view,
+              years: @user.years
+            }
           else
             @new_category.destroy
             render json: { errors: @entry.errors.full_messages }

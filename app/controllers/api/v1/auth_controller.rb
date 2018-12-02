@@ -6,8 +6,9 @@ class Api::V1::AuthController < ApplicationController
     if user && user.authenticate(params[:password])
       token = issue_token({id: user.id})
       render json: {
+        jwt: token,
         username: user.username,
-        id: user.id, jwt: token,
+        id: user.id,
         categories: user.current_categories,
         year_view: user.year_view,
         years: user.years
