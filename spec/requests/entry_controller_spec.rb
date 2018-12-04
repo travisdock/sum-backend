@@ -74,15 +74,82 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 expect(thisyear_user.entries.length).to eq(37)
             end
             it "can create a new entry from old category this year" do
+                jwt = confirm_and_login_user(thisyear_user)
+                expect(thisyear_user.categories.length).to eq(6)
+                expect(thisyear_user.entries.length).to eq(36)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :this_year_expense,
+                        user_id: thisyear_user.id,
+                        category_name: "expense_category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                two_years_ago = Regexp.new(2.years.ago.year.to_s)
+                # Year view should be this year and years should include all years
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago}\]/)
+                thisyear_user.reload
+                # Categories stay the same
+                expect(thisyear_user.categories.length).to eq(6)
+                # Entries increase
+                expect(thisyear_user.entries.length).to eq(37)
             end
             it "can create a new entry and category next year" do
+                jwt = confirm_and_login_user(thisyear_user)
+                expect(thisyear_user.categories.length).to eq(6)
+                expect(thisyear_user.entries.length).to eq(36)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :next_year_expense,
+                        user_id: thisyear_user.id,
+                        category_name: "test_category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                two_years_ago = Regexp.new(2.years.ago.year.to_s)
+                next_year = Regexp.new(1.year.from_now.year.to_s)
+                # Year view should be this year and years should include all years
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago},#{next_year}\]/)
+                thisyear_user.reload
+                # Categories increase
+                expect(thisyear_user.categories.length).to eq(7)
+                # Entries increase
+                expect(thisyear_user.entries.length).to eq(37)
             end
             it "can create a new entry from old category next year" do
+                next_year_expense_category = create(:expense_category, users: [thisyear_user], year: 1.year.from_now.year)
+                jwt = confirm_and_login_user(thisyear_user)
+                expect(thisyear_user.categories.length).to eq(7)
+                expect(thisyear_user.entries.length).to eq(36)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :next_year_expense,
+                        user_id: thisyear_user.id,
+                        category_name: "expense_category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                two_years_ago = Regexp.new(2.years.ago.year.to_s)
+                next_year = Regexp.new(1.year.from_now.year.to_s)
+                # Year view should be this year and years should include all years
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago},#{next_year}\]/)
+                thisyear_user.reload
+                # Categories stay the same
+                expect(thisyear_user.categories.length).to eq(7)
+                # Entries increase
+                expect(thisyear_user.entries.length).to eq(37)
             end
         end
 
         context "when logged in but with an invalid entry" do
             let(:user) {create(:user)}
+            # No amount value should result in error
             let(:invalid_params) do
                 {
                     user_id: user.id,
@@ -104,22 +171,15 @@ RSpec.describe "Entry Controller Specs", type: :request do
             end
         end
 
-        context "when not logged in responds appropriately" do
+        context "when not logged" do
             let(:user) {create(:user)}
-            let(:valid_params) do
-                {
-                    user_id: user.id,
-                    date: Date.today.to_s,
-                    amount: "1.25",
-                    notes: "this is a test entry",
-                    category_name: "test category",
-                    income: false,
-                    untracked: false
-
-                }
-            end
-            it "creates a new entry and category" do
-                post "/api/v1/entries", params: valid_params
+            it "responds with invalid token error" do
+                post "/api/v1/entries",
+                    params: attributes_for(
+                            :this_year_expense,
+                            user_id: user.id,
+                            category_name: "expense_category"
+                            ).except!(:id)
                 expect(response).to have_http_status(401)
                 expect(response.body).to match(/Token Invalid/)
             end
@@ -186,7 +246,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 expect(user_with_data.entries.length).to eq(35)
             end
         end
-        context "given an invalidated user" do
+        context "given an invalid user" do
             it "responds with appropriate error" do
                 delete "/api/v1/entries", params: valid_params
                 expect(response).to have_http_status(401)

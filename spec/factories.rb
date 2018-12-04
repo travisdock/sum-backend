@@ -51,6 +51,9 @@ FactoryBot.define do
             association :category, factory: :expense_category
             notes { "test expense" }
             income { false }
+            factory :next_year_expense do
+                date { Faker::Date.between(1.year.from_now.beginning_of_year, 1.year.from_now.end_of_year) }
+            end
             factory :this_year_expense do
                 date { Faker::Date.between(Time.now.beginning_of_year, Time.now.end_of_year) }
             end
@@ -65,6 +68,9 @@ FactoryBot.define do
             association :category, factory: :income_category
             notes { "test income" }
             income { true }
+            factory :next_year_income do
+                date { Faker::Date.between(1.year.from_now.beginning_of_year, 1.year.from_now.end_of_year) }
+            end
             factory :this_year_income do
                 date { Faker::Date.between(Time.now.beginning_of_year, Time.now.end_of_year) }
             end
