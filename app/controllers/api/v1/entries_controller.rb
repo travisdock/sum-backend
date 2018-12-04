@@ -3,18 +3,28 @@ class Api::V1::EntriesController < ApplicationController
   def create
     if logged_in
       @user = User.find(params[:user_id])
-
-      @category = @user.categories.select{ |category| category.name == params[:category_name]}[0]
-
+      @category = @user.categories.select{ |cat| cat.name == params[:category_name] && cat.year == @user.year_view}[0]
+      
       if @category
         @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category_id: @category.id, category_name: @category.name, income: @category.income, untracked: @category.untracked)
         if @entry.save
-          render json: @entry
+          render json: {
+            username: @user.username,
+            id: @user.id,
+            categories: @user.current_categories,
+            year_view: @user.year_view,
+            years: @user.years
+          }
         else
           render json: { errors: @entry.errors.full_messages }
         end
       else
-        @new_category = Category.create(name: category_params[:category_name], income: category_params[:income], untracked: category_params[:untracked])
+        @new_category = Category.create(
+          name: category_params[:category_name],
+          income: category_params[:income],
+          untracked: category_params[:untracked],
+          year: DateTime.parse(entry_params[:date]).year
+          );
         if @new_category.save
           @user.categories << @new_category
           @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category_id: @new_category.id, category_name: @new_category.name, income: @new_category.income, untracked: @new_category.untracked)

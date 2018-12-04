@@ -5,41 +5,88 @@ RSpec.describe "Entry Controller Specs", type: :request do
     include RequestSpecHelper
 
     describe "POST /api/v1/entries" do
-        before(:each) do
-            @user = create(:user)
-        end
-
         context "when logged in and with valid parameters" do
-            let(:valid_params) do
-                {
-                    user_id: @user.id,
-                    date: "1/12/18",
-                    amount: "1.25",
-                    notes: "this is a test entry",
-                    category_name: "test category",
-                    income: false,
-                    untracked: false
-
-                }
-            end
-            it "creates a new entry and category" do
-                jwt = confirm_and_login_user(@user)
-                expect(@user.categories.length).to eq(0)
-                expect(@user.entries.length).to eq(0)
-                post "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
+        let(:user_without_data) {create(:user, year_view: Date.current.year)}
+        let(:thisyear_user) {create(:user_with_data, year_view: Date.current.year)}
+            it "creates a new entry and category last year" do
+                jwt = confirm_and_login_user(user_without_data)
+                expect(user_without_data.categories.length).to eq(0)
+                expect(user_without_data.entries.length).to eq(0)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :last_year_expense,
+                        user_id: user_without_data.id,
+                        category_name: "test category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(200)
-                expect(response.body).to match(/test category/)
-                @user.reload
-                expect(@user.categories.length).to eq(1)
-                expect(@user.entries.length).to eq(1)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                # Categories does not have anything because the category was added to last year
+                expect(response.body).to match(/\"categories\":\[\]/)
+                # Year view should be this year and years should include last year
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{last_year}\]/)
+                user_without_data.reload
+                expect(user_without_data.categories.length).to eq(1)
+                expect(user_without_data.entries.length).to eq(1)
+            end
+            it "can create a new entry and category this year" do
+                jwt = confirm_and_login_user(user_without_data)
+                expect(user_without_data.categories.length).to eq(0)
+                expect(user_without_data.entries.length).to eq(0)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :this_year_expense,
+                        user_id: user_without_data.id,
+                        category_name: "test category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                # Year view should be this year and years should include last year
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year}\]/)
+                user_without_data.reload
+                expect(user_without_data.categories.length).to eq(1)
+                expect(user_without_data.entries.length).to eq(1)
+            end
+            it "can create a new entry from old category last year" do
+                jwt = confirm_and_login_user(thisyear_user)
+                expect(thisyear_user.categories.length).to eq(6)
+                expect(thisyear_user.entries.length).to eq(36)
+                post "/api/v1/entries",
+                    params: attributes_for(
+                        :last_year_expense,
+                        user_id: thisyear_user.id,
+                        category_name: "expense_category"
+                        ).except!(:id),
+                    headers: { "Authorization" => "#{jwt}" }
+                expect(response).to have_http_status(200)
+                this_year = Regexp.new(Time.current.year.to_s)
+                last_year = Regexp.new(1.year.ago.year.to_s)
+                two_years_ago = Regexp.new(2.years.ago.year.to_s)
+                # Year view should be this year and years should include all years
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago}\]/)
+                thisyear_user.reload
+                # Categories stay the same
+                expect(thisyear_user.categories.length).to eq(6)
+                # Entries increase
+                expect(thisyear_user.entries.length).to eq(37)
+            end
+            it "can create a new entry from old category this year" do
+            end
+            it "can create a new entry and category next year" do
+            end
+            it "can create a new entry from old category next year" do
             end
         end
 
         context "when logged in but with an invalid entry" do
+            let(:user) {create(:user)}
             let(:invalid_params) do
                 {
-                    user_id: @user.id,
-                    date: "1/12/18",
+                    user_id: user.id,
+                    date: Date.today.to_s,
                     notes: "test entry #2",
                     category_name: "test category #2",
                     income: false,
@@ -47,21 +94,22 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 }
             end
             it "responds with appropriate errors and does not create entry or category" do
-                jwt = confirm_and_login_user(@user)
+                jwt = confirm_and_login_user(user)
                 post "/api/v1/entries", params: invalid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response.body).to match(/errors/)
-                expect(@user.categories.length).to eq(0)
+                expect(user.categories.length).to eq(0)
                 expect(Category.all.length).to eq(0)
-                expect(@user.entries.length).to eq(0)
+                expect(user.entries.length).to eq(0)
                 expect(Entry.all.length).to eq(0)
             end
         end
 
         context "when not logged in responds appropriately" do
+            let(:user) {create(:user)}
             let(:valid_params) do
                 {
-                    user_id: @user.id,
-                    date: "1/12/18",
+                    user_id: user.id,
+                    date: Date.today.to_s,
                     amount: "1.25",
                     notes: "this is a test entry",
                     category_name: "test category",
@@ -131,11 +179,11 @@ RSpec.describe "Entry Controller Specs", type: :request do
         context "given a validated user with data deletes an entry" do
             it "deletes the entry" do
                 jwt = confirm_and_login_user(user_with_data)
-                expect(user_with_data.entries.length).to eq(8)
+                expect(user_with_data.entries.length).to eq(36)
                 delete "/api/v1/entries", params: valid_params, headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(200)
                 user_with_data.reload
-                expect(user_with_data.entries.length).to eq(7)
+                expect(user_with_data.entries.length).to eq(35)
             end
         end
         context "given an invalidated user" do

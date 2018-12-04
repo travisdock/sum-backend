@@ -13,8 +13,7 @@ class User < ApplicationRecord
   end
 
   def current_categories
-    year_range = DateTime.new(self.year_view).beginning_of_year..DateTime.new(self.year_view).end_of_year
-    return self.categories.where(created_at: year_range)
+    return self.categories.where(year: self.year_view)
   end
   
   def charts
