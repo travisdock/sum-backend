@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_secure_password
   
   def years
-    return self.entries.map{|entry| entry.date.year}.uniq
+    return self.entries.map{|entry| entry.date.year}.uniq.sort
   end
 
   def current_categories

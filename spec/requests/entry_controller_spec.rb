@@ -66,7 +66,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 last_year = Regexp.new(1.year.ago.year.to_s)
                 two_years_ago = Regexp.new(2.years.ago.year.to_s)
                 # Year view should be this year and years should include all years
-                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago}\]/)
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{two_years_ago},#{last_year},#{this_year}\]/)
                 thisyear_user.reload
                 # Categories stay the same
                 expect(thisyear_user.categories.length).to eq(6)
@@ -89,7 +89,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 last_year = Regexp.new(1.year.ago.year.to_s)
                 two_years_ago = Regexp.new(2.years.ago.year.to_s)
                 # Year view should be this year and years should include all years
-                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago}\]/)
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{two_years_ago},#{last_year},#{this_year}\]/)
                 thisyear_user.reload
                 # Categories stay the same
                 expect(thisyear_user.categories.length).to eq(6)
@@ -113,7 +113,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 two_years_ago = Regexp.new(2.years.ago.year.to_s)
                 next_year = Regexp.new(1.year.from_now.year.to_s)
                 # Year view should be this year and years should include all years
-                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago},#{next_year}\]/)
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{two_years_ago},#{last_year},#{this_year},#{next_year}\]/)
                 thisyear_user.reload
                 # Categories increase
                 expect(thisyear_user.categories.length).to eq(7)
@@ -138,7 +138,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 two_years_ago = Regexp.new(2.years.ago.year.to_s)
                 next_year = Regexp.new(1.year.from_now.year.to_s)
                 # Year view should be this year and years should include all years
-                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{this_year},#{last_year},#{two_years_ago},#{next_year}\]/)
+                expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{two_years_ago},#{last_year},#{this_year},#{next_year}\]/)
                 thisyear_user.reload
                 # Categories stay the same
                 expect(thisyear_user.categories.length).to eq(7)
