@@ -75,13 +75,28 @@ RSpec.describe "User Controller Specs", :type => :request do
       patch "/api/v1/users/#{thisyear_user.id}",
         params: {
           user_id: thisyear_user.id,
-          year_view: 1.year.ago.year},
-          headers: { "Authorization" => "#{jwt}"
-        }
+          year_view: 1.year.ago.year
+        },
+        headers: { "Authorization" => "#{jwt}"}
       year = Regexp.new(1.year.ago.year.to_s)
       expect(response.body).to match(/\"year_view\":#{year}/)
       thisyear_user.reload
       expect(thisyear_user.year_view).to eq(1.year.ago.year)
+    end
+
+    it 'updates the users username when given that info' do
+      jwt = confirm_and_login_user(thisyear_user)
+      expect(thisyear_user.username).to include("tester")
+      new_username = "new_username"
+      patch "/api/v1/users/#{thisyear_user.id}",
+        params: {
+          user_id: thisyear_user.id,
+          username: new_username
+        },
+        headers: { "Authorization" => "#{jwt}"}
+      expect(response.body).to match(/\"username\":\"#{new_username}\"/)
+      thisyear_user.reload
+      expect(thisyear_user.username).to eq(new_username)
     end
 
     it 'does not update user if not authenticated' do
