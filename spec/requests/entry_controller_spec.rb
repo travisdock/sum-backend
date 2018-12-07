@@ -73,7 +73,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 # Entries increase
                 expect(thisyear_user.entries.length).to eq(37)
             end
-            it "can create a new entry from old category this year" do
+            it "can create a new entry from existing category this year" do
                 jwt = confirm_and_login_user(thisyear_user)
                 expect(thisyear_user.categories.length).to eq(6)
                 expect(thisyear_user.entries.length).to eq(36)
@@ -120,16 +120,15 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 # Entries increase
                 expect(thisyear_user.entries.length).to eq(37)
             end
-            it "can create a new entry from old category next year" do
-                next_year_expense_category = create(:expense_category, users: [thisyear_user], year: 1.year.from_now.year)
+            it "can create a new entry from existing this year category, next year" do
                 jwt = confirm_and_login_user(thisyear_user)
-                expect(thisyear_user.categories.length).to eq(7)
+                expect(thisyear_user.categories.length).to eq(6)
                 expect(thisyear_user.entries.length).to eq(36)
                 post "/api/v1/entries",
                     params: attributes_for(
-                        :next_year_expense,
+                        :next_year_income,
                         user_id: thisyear_user.id,
-                        category_name: "expense_category"
+                        category_name: "income_category"
                         ).except!(:id),
                     headers: { "Authorization" => "#{jwt}" }
                 expect(response).to have_http_status(200)
@@ -140,8 +139,10 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 # Year view should be this year and years should include all years
                 expect(response.body).to match(/"year_view\":#{this_year},\"years\":\[#{two_years_ago},#{last_year},#{this_year},#{next_year}\]/)
                 thisyear_user.reload
-                # Categories stay the same
+                # Categories increase
                 expect(thisyear_user.categories.length).to eq(7)
+                expect(thisyear_user.categories.last.income).to eq(true)
+                expect(thisyear_user.categories.last.year).to eq(1.year.from_now.year)
                 # Entries increase
                 expect(thisyear_user.entries.length).to eq(37)
             end

@@ -3,8 +3,19 @@ class Api::V1::EntriesController < ApplicationController
   def create
     if logged_in
       @user = User.find(params[:user_id])
-      @category = @user.categories.select{ |cat| cat.name == params[:category_name] && cat.year == @user.year_view}[0]
-      
+      entry_year = DateTime.parse(params[:date]).year
+      category_with_date = @user.categories.select{ |cat| cat.name == params[:category_name] && cat.year == entry_year}[0]
+      category_without_date = @user.categories.select{ |cat| cat.name == params[:category_name] }[0]
+
+      if category_with_date
+        @category = category_with_date
+      elsif category_without_date
+        @category = category_without_date.dup
+        @category.year = entry_year
+        @category.save
+        @user.categories << @category
+      end
+
       if @category
         @entry = Entry.create(user_id: entry_params[:user_id], amount: entry_params[:amount], date: entry_params[:date], notes: entry_params[:notes], category_id: @category.id, category_name: @category.name, income: @category.income, untracked: @category.untracked)
         if @entry.save
