@@ -24,5 +24,9 @@ https://sumfinance-b89c6.firebaseapp.com/
 
 ## To Do:
 - [ ] Continue writing RSpec tests
+- [ ] Improve CSV Handling:
+  - [ ] handle different date formats
+  - [ ] handle case sensitivity of category names (all categories capitalized?)
+  - [ ] reverse in case it imports incorrectly? Maybe a review page of categories created that you must confirm?
 - [ ] Add category update and delete routes
 - [ ] Dependent: destroy (category entries)
