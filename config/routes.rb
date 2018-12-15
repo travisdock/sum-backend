@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       patch '/entries', to: 'entries#update'
       post '/entries/import', to: 'entries#import'
 
+      # Category Routes
+      resources :categories, except: [:new, :edit, :index, :show]
+
     end
   end
 
