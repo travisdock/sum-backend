@@ -22,8 +22,19 @@ class Entry < ApplicationRecord
     created_categories = []
     csv.each do |row|
       data = row.to_hash
-      data['Amount'] = Entry.currency_to_number(data['Amount'])
-      entry_year = DateTime.parse(data['Date']).year
+
+      # Validate entry amount and convert to number
+      begin
+        data['Amount'] = Entry.currency_to_number(data['Amount'])
+      rescue StandardError => msg
+        raise "Error adding an entry (Date: #{data['Date']}, Category: #{data['Category']}, Amount: #{data['Amount']}, Notes: #{data['Notes']}) to the queue because of the following error:  #{msg.message}"
+      end
+      # Validate entry date and set year variable
+      begin
+        entry_year = DateTime.parse(data['Date']).year
+      rescue StandardError => msg
+        raise "Error adding an entry (Date: #{data['Date']}, Category: #{data['Category']}, Amount: #{data['Amount']}, Notes: #{data['Notes']}) to the queue because of the following error:  #{msg.message}"
+      end
       
       category_with_date = @user.categories.where(year: entry_year).select{ |cat| cat.name == data['Category'] }[0]
       category_without_date = @user.categories.select{ |cat| cat.name == data['Category'] }[0]
