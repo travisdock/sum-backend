@@ -23,8 +23,19 @@ class Entry < ApplicationRecord
     csv.each do |row|
       data = row.to_hash
       data['Amount'] = Entry.currency_to_number(data['Amount'])
+      entry_year = DateTime.parse(data['Date']).year
+      
+      category_with_date = @user.categories.select{ |cat| cat.name == data['Category'] && cat.year == entry_year}[0]
+      category_without_date = @user.categories.select{ |cat| cat.name == data['Category'] }[0]
 
-      @category = @user.categories.select{ |category| category.name == data['Category']}[0]
+      if category_with_date
+        @category = category_with_date
+      elsif category_without_date
+        @category = category_without_date.dup
+        @category.year = entry_year
+        @category.save
+        @user.categories << @category
+      end
 
       if @category
         @entry = Entry.new(user_id: @user.id, amount: data['Amount'], date: data['Date'], notes: data['Notes'], category_id: @category.id, category_name: @category.name, income: @category.income, untracked: @category.untracked)
@@ -39,7 +50,7 @@ class Entry < ApplicationRecord
           raise "Error adding an entry (Date: #{@entry.date}, Category: #{@entry.category.name}, Amount: #{@entry.amount}, Notes: #{@entry.notes}) to the queue because of the following error:  #{@entry.errors.full_messages}"
         end
       else
-        @new_category = Category.new(name: data['Category'], income: false, untracked: false)
+        @new_category = Category.new(name: data['Category'], income: false, untracked: false, year: entry_year)
         if @new_category.valid?
           @new_category.save
           @user.categories << @new_category
