@@ -25,7 +25,7 @@ class Entry < ApplicationRecord
       data['Amount'] = Entry.currency_to_number(data['Amount'])
       entry_year = DateTime.parse(data['Date']).year
       
-      category_with_date = @user.categories.select{ |cat| cat.name == data['Category'] && cat.year == entry_year}[0]
+      category_with_date = @user.categories.where(year: entry_year).select{ |cat| cat.name == data['Category'] }[0]
       category_without_date = @user.categories.select{ |cat| cat.name == data['Category'] }[0]
 
       if category_with_date
@@ -35,6 +35,8 @@ class Entry < ApplicationRecord
         @category.year = entry_year
         @category.save
         @user.categories << @category
+      else
+        @category = nil
       end
 
       if @category
