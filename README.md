@@ -25,6 +25,7 @@ https://sumfinance-b89c6.firebaseapp.com/
 ## To Do:
 - [ ] Continue writing RSpec tests
 - [ ] When an entry category is updated the inherited values also update
+- [ ] Should users be able to put negative entries?
 - [ ] Improve CSV Handling:
   - [ ] handle different date formats
   - [ ] handle case sensitivity of category names (all categories capitalized?)
