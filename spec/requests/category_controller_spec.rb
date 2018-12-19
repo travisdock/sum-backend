@@ -9,7 +9,6 @@ RSpec.describe "Category Controller Spec", type: :request do
         let(:category) { user_with_data.categories.first }
 
         context "with valid params" do
-
             let(:valid_params) do
                 {
                     user_id: user_with_data.id,
@@ -45,6 +44,22 @@ RSpec.describe "Category Controller Spec", type: :request do
                 expect(response.body).to match(/There was an error/)
             end
         end
+        context "without auth" do
+            let(:valid_params) do
+                {
+                    user_id: user_with_data.id,
+                    name: "new name",
+                    income: category.income,
+                    untracked: category.untracked,
+                    year: category.year
+                }
+            end
+            it "responds appropriately" do
+                patch "/api/v1/categories/#{category.id}", params: valid_params
+                expect(response).to have_http_status(401)
+                expect(response.body).to match(/Token Invalid/)
+            end
+        end
     end
 
     describe "DELETE /api/v1/categories/:id" do
@@ -64,6 +79,18 @@ RSpec.describe "Category Controller Spec", type: :request do
                 expect(response).to have_http_status(:successful)
                 user_with_data.reload
                 expect(user_with_data.categories.length).to eq(5)
+            end
+        end
+        context "without auth" do
+            let(:valid_params) do
+                {
+                    user_id: user_with_data.id
+                }
+            end
+            it "responds appropriately" do
+                delete "/api/v1/categories/#{category.id}", params: valid_params
+                expect(response).to have_http_status(401)
+                expect(response.body).to match(/Token Invalid/)
             end
         end
     end
