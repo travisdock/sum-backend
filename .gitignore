@@ -29,7 +29,7 @@
 
 # Ignore coverage files
 /coverage/*
-/.coveralls.yml
+.coveralls.yml
 
 # Ignore DS_store
 /spec/.DS_Store
