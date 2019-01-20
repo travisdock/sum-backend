@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_161522) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year_view", default: 2019
+    t.integer "year_view", default: 2018
   end
 
 end
