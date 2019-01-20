@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, except: [:create]
   
-  after_action :set_year, only: [:create]
+  after_action :set_year_view, only: [:create]
 
   def create
     @user = User.create(user_params)
@@ -69,6 +69,7 @@ class Api::V1::UsersController < ApplicationController
 
   def set_year_view
     @user.year_view = Time.now.year
+    @user.save
   end
 
 end

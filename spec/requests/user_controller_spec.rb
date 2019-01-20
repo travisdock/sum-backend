@@ -3,6 +3,31 @@ require_relative '../support/auth_helper'
 
 RSpec.describe "User Controller Specs", :type => :request do
   include RequestSpecHelper
+  include ActiveSupport::Testing::TimeHelpers
+  describe 'Post user' do
+    it 'creates a new user with the appropriate default year view(2001)' do
+      travel_to Time.new(2001, 1, 1) do
+        post "/api/v1/users",
+          params: {
+            username: "me",
+            password: "password",
+            email: "email"
+          }
+        end
+        expect(response).to have_http_status(200)
+        expect(User.last.year_view).to eq(2001)
+    end
+    it 'creates a new user with the appropriate default year view(current)' do
+      post "/api/v1/users",
+        params: {
+          username: "me",
+          password: "password",
+          email: "email"
+        }
+      expect(response).to have_http_status(200)
+      expect(User.last.year_view).to eq(Time.now.year)
+    end
+  end
   describe 'GET user charts' do
     let(:user_without_data) {create(:user)}
     let(:thisyear_user) {create(:user_with_data, year_view: Date.current.year)}
