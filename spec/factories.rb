@@ -6,8 +6,8 @@ FactoryBot.define do
         factory :user_with_data do
             after(:create) do |user, evaluator|
                 # Create categories for all three years
-                this_year_expense_category = create(:expense_category, users: [user])
-                this_year_income_category = create(:income_category, users: [user])
+                this_year_expense_category = create(:expense_category, users: [user], year: Time.now.year)
+                this_year_income_category = create(:income_category, users: [user], year: Time.now.year)
                 last_year_expense_category = create(:expense_category, users: [user], year: 1.year.ago.year)
                 last_year_income_category = create(:income_category, users: [user], year: 1.year.ago.year)
                 two_years_ago_expense_category = create(:expense_category, users: [user], year: 2.years.ago.year)
