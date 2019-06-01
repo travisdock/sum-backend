@@ -28,8 +28,6 @@ gem 'figaro'
 gem 'awesome_print'
 # Use rakc-cors for development testing
 gem 'rack-cors'
-# Use New Relic RPM for monitoring
-gem 'newrelic_rpm'
 # Use Coveralls for test coverage
 gem 'coveralls', require: false
 ##############################################################
