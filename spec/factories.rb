@@ -52,16 +52,16 @@ FactoryBot.define do
             notes { "test expense" }
             income { false }
             factory :next_year_expense do
-                date { Faker::Date.between(1.year.from_now.beginning_of_year, 1.year.from_now.end_of_year) }
+                date { Faker::Date.between(from: 1.year.from_now.beginning_of_year, to: 1.year.from_now.end_of_year) }
             end
             factory :this_year_expense do
-                date { Faker::Date.between(Time.now.beginning_of_year, Time.now.end_of_year) }
+                date { Faker::Date.between(from: Time.now.beginning_of_year, to: Time.now.end_of_year) }
             end
             factory :last_year_expense do
-                date { Faker::Date.between(1.year.ago.beginning_of_year, 1.year.ago.end_of_year) }
+                date { Faker::Date.between(from: 1.year.ago.beginning_of_year, to: 1.year.ago.end_of_year) }
             end
             factory :two_years_ago_expense do
-                date { Faker::Date.between(2.years.ago.beginning_of_year, 2.years.ago.end_of_year) }
+                date { Faker::Date.between(from: 2.years.ago.beginning_of_year, to: 2.years.ago.end_of_year) }
             end
         end
         factory :income do
@@ -69,16 +69,16 @@ FactoryBot.define do
             notes { "test income" }
             income { true }
             factory :next_year_income do
-                date { Faker::Date.between(1.year.from_now.beginning_of_year, 1.year.from_now.end_of_year) }
+                date { Faker::Date.between(from: 1.year.from_now.beginning_of_year, to: 1.year.from_now.end_of_year) }
             end
             factory :this_year_income do
-                date { Faker::Date.between(Time.now.beginning_of_year, Time.now.end_of_year) }
+                date { Faker::Date.between(from: Time.now.beginning_of_year, to: Time.now.end_of_year) }
             end
             factory :last_year_income do
-                date { Faker::Date.between(1.year.ago.beginning_of_year, 1.year.ago.end_of_year) }
+                date { Faker::Date.between(from: 1.year.ago.beginning_of_year, to: 1.year.ago.end_of_year) }
             end
             factory :two_years_ago_income do
-                date { Faker::Date.between(2.years.ago.beginning_of_year, 2.years.ago.end_of_year) }
+                date { Faker::Date.between(from: 2.years.ago.beginning_of_year, to: 2.years.ago.end_of_year) }
             end
         end
         factory :untracked do
