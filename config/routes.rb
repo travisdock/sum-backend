@@ -21,8 +21,10 @@ Rails.application.routes.draw do
 
       # Category Routes
       resources :categories, except: [:new, :edit, :index, :show]
-
+    end
+    namespace :v2 do
+      # Data Routes
+      get 'charts/:user_id', to: 'users#v2charts'
     end
   end
-
 end
