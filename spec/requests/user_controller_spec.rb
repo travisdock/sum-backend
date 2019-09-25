@@ -65,6 +65,15 @@ RSpec.describe "User Controller Specs", :type => :request do
       expect(response).to have_http_status(200)
       expect(response.body).to match(/No Expenses/)
     end
+
+    it 'returns correct v2 format' do
+      jwt = confirm_and_login_user(lastyear_user)
+      get "/api/v2/charts/#{lastyear_user.id}", headers: { "Authorization" => "#{jwt}" }
+      expect(response).to have_http_status(200)
+      expect(response.body).to match(/\"Total Expenses\":\"90.0\"/)
+      year = Regexp.new(1.year.ago.year.to_s)
+      expect(response.body).to match(year)
+    end
   end
 
   describe 'GET user entries' do
