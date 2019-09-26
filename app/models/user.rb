@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include UserHelpers
+
   has_many :user_categories
   has_many :categories, :through => :user_categories
   has_many :entries
@@ -206,5 +208,4 @@ class User < ApplicationRecord
     # Return hash
     return payload
   end
-
 end
