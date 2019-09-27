@@ -2,7 +2,7 @@ language: ruby
 deploy:
   provider: heroku
   api_key:
-    secure: W/2rZLA63/DZBBPwyO6iXZJ+pu9kulOwFZ+ZTuDWxiYInDFdWgVVP2D//NzaxOjrdlkYyN4Ssm/2cetjkxeuefGXifm3KkES7MIdcNdmWGDpTdYf+lBeLl63bFMpXa4ke47HE6w2vHFGsZn8PvLxBebUeCWiN/+8HV/QXwhisGCF5TAJHNmLZvMS/UDD1/ofT4/Xp0xT7vrsZzSGZ3dY2MtsdyoF59Cid1bf8BHnbP4wr6QFbciGitL0Iv8ggFJP6EsFYWq7qZi+qq7Mo4EeNM7RKA47StLCMazkQO4jomYP1hstblmRXBrDysNdC7OwV+bdNviM0t0FxXvwnLsNZ5wyyOfEjFrqbe6CGtaSPQX9S3dv6Iss1t5YEDZqXP8fEWllt6a5mkap5k0uh3adzMKl56j3kOXBQKtLMJThVJtUdSAGdYesJVmD+Q3vFianGRyc7ieWJig7Ij1cMq9M6+WqHfhhiyzbyZac1srWMVpqrYkEDGBHrX8C/QxtPef6gSHysTmoHoblcq5dDfmS7zdJWc2mNZt9l7GRJ8o/YOxHldBgDigkjZlvPATImIfFr0w5DXzIVt9eM9xQy0Yr5UlJ16YvBDzc5I81rHaHVzSahTNKJR5qJW82zqAoD3pnWJmRnCpntK8r6Nh6r6oFIJ8fpY932nEwXLNkqvMQvUo=
+    secure: 0/5zhAX/jEjZqJibGOXqJOIX1L+mDO1VYeDg8FtCNwk4CEVaJbTtFvUqyWtAax98HCj7oq3dlWameQ3cyO0heG92818oMTkLi9t5cqdXCnVSQaH7qCbW9TOyIUKz28QXkTXwTNJ0PLHx5e81jADP534YyKl7sh6DBG/mBe9LmGtHwIjiAcYSXG+Up3zvkpU9NwGUGpYoKcW40yOsmJAJ8DakZgK6ZE8MWkY6ozxqF2Yyz/QAVFIMqQqg73KU2Bi5Oxd1FuirPsSBVQTbMvzAXa37AT+wBq3Z1sFtugY1CfJhPwx95QIAc+pRo3xdwXcmggpsMA3nOPi/puq9kgRi7HWkyww7FSTrYkiCrW88IZRcfYjJNF2DjYqIEH1pqr7W5MciIWV42EHPmd1beoS+/IzeZ+ibpESTES1F90angZUzqOQK9A8Z8j3vglT1NZrHR6b6Or+wlH3DGUqxvLxfWnkv+OmZ+yYG9Q8Mpo+8/on93El5cT1dSfxXGhH1PuUG0qX5HES4ax9M/ioWQ20fUwOwcsB//8sy2kUcGM0iMrDbxR+sJ+dOMoxRrVTFGVU2og1YpEh4Kr6f36d/G+7bFjkvmH6ueyx9FgSfNDyAMY58jyCDkK3lPfzxHYt7AzBnMpsK5Yu1hNgIemt0OR8r7owFPh7WT8nbjVx4MWLwE0w=
   app:
     staging: sumfinance-staging
     production: sumfinance
@@ -17,7 +17,7 @@ before_install:
 - gem update --system
 - gem install bundler
 before_script:
-  # create test db
+# create test db
 - psql -c 'create database travis_ci_test;' -U postgres
 # copy test db settings into database.yml
 - cp config/database.yml.travis config/database.yml
