@@ -25,7 +25,7 @@ https://sumfinance-b89c6.firebaseapp.com/
 ## To Do:
 - [ ] Continue writing RSpec tests
 - [ ] Add different category creation flow
-   [ ] Currently category default date is 2018, fix that in controller same as user year_view
+- [ ] Currently category default date is 2018, fix that in controller same as user year_view
 - [ ] When an entry category is updated the inherited values also update
 - [ ] Should users be able to put negative entries?
 - [ ] Improve CSV Handling:
