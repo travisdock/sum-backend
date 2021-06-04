@@ -1,11 +1,11 @@
 language: ruby
-deploy:
-  provider: heroku
-  api_key:
-    secure: xZbTcenurogscC8KGpKDz+yJxqB7ULvueDlf3q34ZM+Cj6HtKTiwlFZhKtdXrl5Lsqr68IPeC12GQml7lmFs7s7W2nZMHKxHg0m23eWlWEXvBuw4zFBh/lbqyoq9A54Uin4mx0pyxIk8eV4AoX6N0IbvZZ5HwGxuhpWJIz+RkcR9hqyOkhBz5BjnyaupOtoaxNbbrBNEA6I5YVF7SgrTOOtIxt/yTSBvHNJd6xqDRw2HSdHwjAhu2F96qJSnJDK8FLJzN5Yj6Bf54prQPW961vwvU+ZnPJd/impTc1Omc9j9GaT90TYMoXocPph0j5AByYSQ2MhCmGo2RsU3wDWc7iOXEOn01+jtJ5m7I81Vz9LSayjcPuWQtb18hkHlRlJza6kjMjy+IyyHaiNNygrBNKQlW3lIGxkBHGBSwXOPy9eZXpGWx/jyQMR2Kkr64eoXaX6drZNfewZH1iQE42rtd+qjQcvt034oNT3qzhCNXaUMmQieGiKZzAd8KGfcKmnF0P+d6bm6t/o012UDIxbEhL218MZtVLR+/VWeCsKmzQXoBDHT1hSs/yiJ+BO88QTb91vuoENQMFWF6Lx4Ugw1kUBqTUwrBz870Qr/CJrN/CyOmzbSympAE10NH8Ms5NBTndJa4+hrrTvCnfAI5YHlwA1W+ol7M3bxt0GWbgqjfpw=
-  app:
-    staging: sumfinance-staging
-    production: sumfinance
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: xZbTcenurogscC8KGpKDz+yJxqB7ULvueDlf3q34ZM+Cj6HtKTiwlFZhKtdXrl5Lsqr68IPeC12GQml7lmFs7s7W2nZMHKxHg0m23eWlWEXvBuw4zFBh/lbqyoq9A54Uin4mx0pyxIk8eV4AoX6N0IbvZZ5HwGxuhpWJIz+RkcR9hqyOkhBz5BjnyaupOtoaxNbbrBNEA6I5YVF7SgrTOOtIxt/yTSBvHNJd6xqDRw2HSdHwjAhu2F96qJSnJDK8FLJzN5Yj6Bf54prQPW961vwvU+ZnPJd/impTc1Omc9j9GaT90TYMoXocPph0j5AByYSQ2MhCmGo2RsU3wDWc7iOXEOn01+jtJ5m7I81Vz9LSayjcPuWQtb18hkHlRlJza6kjMjy+IyyHaiNNygrBNKQlW3lIGxkBHGBSwXOPy9eZXpGWx/jyQMR2Kkr64eoXaX6drZNfewZH1iQE42rtd+qjQcvt034oNT3qzhCNXaUMmQieGiKZzAd8KGfcKmnF0P+d6bm6t/o012UDIxbEhL218MZtVLR+/VWeCsKmzQXoBDHT1hSs/yiJ+BO88QTb91vuoENQMFWF6Lx4Ugw1kUBqTUwrBz870Qr/CJrN/CyOmzbSympAE10NH8Ms5NBTndJa4+hrrTvCnfAI5YHlwA1W+ol7M3bxt0GWbgqjfpw=
+#   app:
+#     staging: sumfinance-staging
+#     production: sumfinance
 branches:
   only:
   - master
