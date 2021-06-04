@@ -2,7 +2,7 @@ language: ruby
 deploy:
   provider: heroku
   api_key:
-    secure: 0/5zhAX/jEjZqJibGOXqJOIX1L+mDO1VYeDg8FtCNwk4CEVaJbTtFvUqyWtAax98HCj7oq3dlWameQ3cyO0heG92818oMTkLi9t5cqdXCnVSQaH7qCbW9TOyIUKz28QXkTXwTNJ0PLHx5e81jADP534YyKl7sh6DBG/mBe9LmGtHwIjiAcYSXG+Up3zvkpU9NwGUGpYoKcW40yOsmJAJ8DakZgK6ZE8MWkY6ozxqF2Yyz/QAVFIMqQqg73KU2Bi5Oxd1FuirPsSBVQTbMvzAXa37AT+wBq3Z1sFtugY1CfJhPwx95QIAc+pRo3xdwXcmggpsMA3nOPi/puq9kgRi7HWkyww7FSTrYkiCrW88IZRcfYjJNF2DjYqIEH1pqr7W5MciIWV42EHPmd1beoS+/IzeZ+ibpESTES1F90angZUzqOQK9A8Z8j3vglT1NZrHR6b6Or+wlH3DGUqxvLxfWnkv+OmZ+yYG9Q8Mpo+8/on93El5cT1dSfxXGhH1PuUG0qX5HES4ax9M/ioWQ20fUwOwcsB//8sy2kUcGM0iMrDbxR+sJ+dOMoxRrVTFGVU2og1YpEh4Kr6f36d/G+7bFjkvmH6ueyx9FgSfNDyAMY58jyCDkK3lPfzxHYt7AzBnMpsK5Yu1hNgIemt0OR8r7owFPh7WT8nbjVx4MWLwE0w=
+    secure: xZbTcenurogscC8KGpKDz+yJxqB7ULvueDlf3q34ZM+Cj6HtKTiwlFZhKtdXrl5Lsqr68IPeC12GQml7lmFs7s7W2nZMHKxHg0m23eWlWEXvBuw4zFBh/lbqyoq9A54Uin4mx0pyxIk8eV4AoX6N0IbvZZ5HwGxuhpWJIz+RkcR9hqyOkhBz5BjnyaupOtoaxNbbrBNEA6I5YVF7SgrTOOtIxt/yTSBvHNJd6xqDRw2HSdHwjAhu2F96qJSnJDK8FLJzN5Yj6Bf54prQPW961vwvU+ZnPJd/impTc1Omc9j9GaT90TYMoXocPph0j5AByYSQ2MhCmGo2RsU3wDWc7iOXEOn01+jtJ5m7I81Vz9LSayjcPuWQtb18hkHlRlJza6kjMjy+IyyHaiNNygrBNKQlW3lIGxkBHGBSwXOPy9eZXpGWx/jyQMR2Kkr64eoXaX6drZNfewZH1iQE42rtd+qjQcvt034oNT3qzhCNXaUMmQieGiKZzAd8KGfcKmnF0P+d6bm6t/o012UDIxbEhL218MZtVLR+/VWeCsKmzQXoBDHT1hSs/yiJ+BO88QTb91vuoENQMFWF6Lx4Ugw1kUBqTUwrBz870Qr/CJrN/CyOmzbSympAE10NH8Ms5NBTndJa4+hrrTvCnfAI5YHlwA1W+ol7M3bxt0GWbgqjfpw=
   app:
     staging: sumfinance-staging
     production: sumfinance
@@ -12,12 +12,12 @@ branches:
   - staging
   - production
 services:
-  - postgresql
+- postgresql
 before_install:
-  - gem update --system
-  - gem install bundler
+- gem update --system
+- gem install bundler
 before_script:
-  # create test db
-  - psql -c 'create database travis_ci_test;' -U postgres
-  # copy test db settings into database.yml
-  - cp config/database.yml.travis config/database.yml
+# create test db
+- psql -c 'create database travis_ci_test;' -U postgres
+# copy test db settings into database.yml
+- cp config/database.yml.travis config/database.yml
