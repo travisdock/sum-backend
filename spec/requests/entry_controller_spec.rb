@@ -3,6 +3,7 @@ require_relative '../support/auth_helper'
 
 RSpec.describe "Entry Controller Specs", type: :request do
     include RequestSpecHelper
+    include ActionDispatch::TestProcess::FixtureFile
 
     describe "POST /api/v1/entries" do
         context "when logged in and with valid parameters" do
@@ -186,7 +187,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
             end
         end
     end
-    
+
     describe "PATCH /api/v1/entries" do
         let(:entry) {create(:expense)}
         let(:user_with_data) {create(:user_with_data)}
@@ -207,7 +208,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                 expect(user_with_data.entries.first.amount).to eq(45)
             end
         end
-        
+
         context "with valid parameters (category update)" do
             let(:valid_params) do
                 {
@@ -218,7 +219,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
                     income: user_with_data.entries.second.income
                 }
             end
-            
+
             it "updates the entry" do
                 jwt = confirm_and_login_user(user_with_data)
                 expect(user_with_data.entries.second.amount).to eq(15)
@@ -260,7 +261,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
         context "given a valid csv file" do
             it "imports it as expected and adds the entry and category" do
                 jwt = confirm_and_login_user(user)
-                @file = fixture_file_upload('/files/valid-test.csv', 'text/xml')
+                @file = fixture_file_upload('valid-test.csv', 'text/xml')
                 params = Hash.new
                 params['user_id'] = user.id
                 params['file'] = @file
@@ -274,7 +275,7 @@ RSpec.describe "Entry Controller Specs", type: :request do
         context "given an invalid csv file" do
             it "gives the proper error messaging and does not add to the users categories or entries" do
                 jwt = confirm_and_login_user(user)
-                @file = fixture_file_upload('/files/invalid-test.csv', 'text/xml')
+                @file = fixture_file_upload('invalid-test.csv', 'text/xml')
                 params = Hash.new
                 params['user_id'] = user.id
                 params['file'] = @file
