@@ -17,7 +17,7 @@ gem 'puma', '~> 5.3'
 
 #################### ADDED GEMS ##############################
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.18'
 # Used Serializer but took it out to try to speed up data
 # gem 'active_model_serializers'
 # Use jwt tokens for auth
